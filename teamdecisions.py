@@ -5,7 +5,7 @@ import matplotlib.pyplot as plt
 import seaborn as sns
 #import statsmodels.formula.api as sm
 import altair as alt
-from load_data import data_prep
+from load_data import data_prep_new
 #from load_data import team_colors
 from scipy import stats
 #from helpers import pearsonr_ci
@@ -13,7 +13,7 @@ from scipy import stats
 
 def app():
   st.header("To Do or Not to Do a 4th down conversion")
-  df = data_prep() #fourthdown data
+  df = data_prep_new() #fourthdown data
   #team_colors = team_colors() #team colors
   
 
