@@ -8,17 +8,18 @@ import seaborn as sns
 import pandas as pd
 import streamlit as st
 
+@st.cache
 def data_prep():
 
-  DATA = Path("../data")
+  DATA = Path("~/data")
   df = pd.read_csv(DATA/"small_data_team.csv")
   
   
-  return fd_df
+  return df
 @st.cache
 
 def team_colors():
-    DATA = Path("../data")
+    DATA = Path("~/data")
     team_colors = pd.read_csv(DATA/"teamcolors.csv")
   
     return team_colors
