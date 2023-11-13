@@ -12,7 +12,7 @@ from scipy import stats
 
 
 def app():
-  st.header("To do or not to do a 4th down conversion")
+  st.header("To Do or Not to Do a 4th down conversion")
   df = data_prep() #fourthdown data
   team_colors = team_colors() #team colors
   
@@ -38,9 +38,11 @@ def app():
         data = data[data["season"]==season]
         keep_columns = ['home_team','away_team','down','game_date','game_half','game_seconds_remaining', 'play_type', 'ydstogo','yardline_100']
         display_df = data[keep_columns]
+        st.write("Team "+team+" decisions", display_df.sort_index())
+
         
 
 
   
-  
+  team_decisions(df)
   
