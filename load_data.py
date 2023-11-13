@@ -8,11 +8,11 @@ import seaborn as sns
 import pandas as pd
 import streamlit as st
 
-@st.cache
+@st.cache_data
 def data_prep():
   df = pd.read_csv("data/small_data_team.csv")
   return df
-@st.cache
+@st.cache_data
 
 def team_colors():
     team_colors = pd.read_csv("data/teamcolors.csv")
