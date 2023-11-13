@@ -42,9 +42,14 @@ def app():
 
         st.write("Team "+team+" decisions", display_df.sort_index())
 
+        plt.figure()
+        sns.histplot(data=display_df,x='ydsnet')
+        st.pyplot(plt)
+
         
 
 
   
   team_decisions(df)
+  
   
