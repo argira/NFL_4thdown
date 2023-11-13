@@ -38,6 +38,8 @@ def app():
         data = data[data["season"]==season]
         keep_columns = ['game_date','play_type','ydstogo']
         display_df = data[keep_columns]
+        display_df = display_df.rename(columns={"game_date": "Date", "play_type": "Play Type", "ydstogo": "Yards to Go"}, errors="raise")
+
         st.write("Team "+team+" decisions", display_df.sort_index())
 
         
