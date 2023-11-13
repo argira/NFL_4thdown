@@ -1,0 +1,9 @@
+seaborn
+statsmodels
+altair
+spicy
+helpers
+streamlit
+altair
+pandas
+matplotlib
