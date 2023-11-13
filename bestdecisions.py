@@ -36,7 +36,7 @@ def app():
       else:
         data = df[df["home_team"]==team]
         data = data[data["season"]==season]
-        data.sort_values(by='ydsnet', ascending=False)
+        data.sort_values(by='ydsnet', ascending=False).sort_index()
         keep_columns = ['game_date','away_team','play_type','ydstogo','ydsnet','game_half']
         best_df = data[keep_columns]
         
