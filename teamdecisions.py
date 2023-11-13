@@ -37,7 +37,7 @@ def app():
         data = df[df["home_team"]==team]
         data = data[data["season"]==season]
         keep_columns = ['game_date','play_type','ydstogo']
-        plot_columns = ['ydsnet','play_type']
+        plot_columns = ['ydsnet','play_type','ydstogo']
         display_df = data[keep_columns]
         display_df = display_df.rename(columns={"game_date": "Date", "play_type": "Play Type", "ydstogo": "Yards to Go"}, errors="raise")
         plot_df = data[plot_columns]
@@ -45,7 +45,7 @@ def app():
         st.write("Team "+team+" decisions", display_df.sort_index())
 
         plt.figure()
-        sns.catplot(data=plot_df,x='play_type', y='ydsnet', kind='box', palette='plasma')
+        sns.catplot(data=plot_df,x='play_type', y='ydsnet', hue='ydstogo',kind='box', palette='plasma')
         plt.xticks(rotation=45)
         st.pyplot(plt)
 
