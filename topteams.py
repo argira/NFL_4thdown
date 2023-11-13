@@ -19,8 +19,8 @@ def app():
 
 
   def top_performers(df):
-        
-    teams = df.groupby("home_team")["ydsnet"].mean().sort_values( ascending=False).head(10)
+    df = df.rename(columns={'home_team':"Teams"}, errors="raise")   
+    teams = df.groupby("Teams")["ydsnet"].mean().sort_values( ascending=False).head(10)
     #teams = list(df["home_team"].unique())
     #teams.sort()
     #seasons = list(df['season'].unique())
@@ -42,7 +42,7 @@ def app():
         #top_df = top_df.head(10)
         #keep_columns = ['game_date','away_team','play_type','ydstogo','ydsnet','game_half']
         #top_df = top_df[keep_columns]
-    teams = teams.rename(columns={'home_team':"Teams"}, errors="raise")
+    #teams = teams.rename(columns={'home_team':"Teams"}, errors="raise")
         
     st.write("Top 4th down Performers, average Net yards ", teams)
 
