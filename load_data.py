@@ -10,17 +10,11 @@ import streamlit as st
 
 @st.cache
 def data_prep():
-
-  DATA = Path("~/data")
-  df = pd.read_csv(DATA/"small_data_team.csv")
-  
-  
+  df = pd.read_csv("data/small_data_team.csv")
   return df
 @st.cache
 
 def team_colors():
-    DATA = Path("~/data")
-    team_colors = pd.read_csv(DATA/"teamcolors.csv")
-  
+    team_colors = pd.read_csv("data/teamcolors.csv")
     return team_colors
 
