@@ -37,13 +37,15 @@ def app():
         data = df[df["home_team"]==team]
         data = data[data["season"]==season]
         keep_columns = ['game_date','play_type','ydstogo']
+        plot_columns = ['ydsnet']
         display_df = data[keep_columns]
         display_df = display_df.rename(columns={"game_date": "Date", "play_type": "Play Type", "ydstogo": "Yards to Go"}, errors="raise")
+        plot_df = data[plot_columns]
 
         st.write("Team "+team+" decisions", display_df.sort_index())
 
         plt.figure()
-        sns.histplot(data=display_df,x='ydsnet')
+        sns.histplot(data=plot_df,x='ydsnet')
         st.pyplot(plt)
 
         
@@ -51,5 +53,5 @@ def app():
 
   
   team_decisions(df)
-  
+
   
