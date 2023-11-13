@@ -1,9 +1,11 @@
-import streamlit as st
 import teamdecisions
+import bestdecisions
+import streamlit as st
 
 
-OPTIONS = { "Team Decisions": teamdecisions
-           #"Best Decisions": bestdecisions,
+
+OPTIONS = { "Team Decisions": teamdecisions,
+           "Best Decisions": bestdecisions
            #"Worst Decisions": worstdecisions,
            #"4th Down Ruling Teams": rulingteam
           }
