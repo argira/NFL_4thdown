@@ -36,7 +36,7 @@ def app():
       else:
         data = df[df["home_team"]==team]
         data = data[data["season"]==season]
-        keep_columns = ['home_team','away_team','down','game_date','game_half','game_seconds_remaining', 'play_type', 'ydstogo','yardline_100']
+        keep_columns = ['game_date','play_type','ydstogo']
         display_df = data[keep_columns]
         st.write("Team "+team+" decisions", display_df.sort_index())
 
