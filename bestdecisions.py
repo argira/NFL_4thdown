@@ -36,13 +36,14 @@ def app():
       else:
         data = df[df["home_team"]==team]
         data = data[data["season"]==season]
-        data.sort_values(by='yrdsnet', ascending=False)
+        
         keep_columns = ['game_date','away_team','play_type','ydstogo','ydsnet','game_half']
         display_df = data[keep_columns]
+        data.sort_values(by='ydsnet', ascending=False)
         display_df = display_df.rename(columns={"game_date": "Date", "play_type": "Play Type", "ydstogo": "Yards to Go",
                                                 'away_team':"Away Team", 'ydsnet':'Yards Net', 'game_half':'Half'}, errors="raise")
         display_df = display_df.head(10)
-        st.write("Team "+team+" decisions", display_df.sort_index())
+        st.write("Team "+team+" best decisions", display_df.sort_index())
 
         
 
