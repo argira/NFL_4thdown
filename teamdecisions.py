@@ -44,12 +44,15 @@ def app():
 
         col1,col2 = st.columns
 
-        col1.write("Team "+team+" decisions", display_df.sort_index())
+        with col1:
+         st.write("Team "+team+" decisions", display_df.sort_index())
 
-        col2.plt.figure()
-        sns.catplot(data=plot_df,x='play_type', y='ydsnet',kind='box', palette='plasma')
-        plt.xticks(rotation=45)
-        st.pyplot(plt)
+        with col2:
+
+          st.plt.figure()
+          sns.catplot(data=plot_df,x='play_type', y='ydsnet',kind='box', palette='plasma')
+          plt.xticks(rotation=45)
+          st.pyplot(plt)
 
         
 
