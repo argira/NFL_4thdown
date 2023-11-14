@@ -49,7 +49,7 @@ def app():
 
         with col2:
 
-          st.plt.figure()
+          plt.figure()
           sns.catplot(data=plot_df,x='play_type', y='ydsnet',kind='box', palette='plasma')
           plt.xticks(rotation=45)
           st.pyplot(plt)
