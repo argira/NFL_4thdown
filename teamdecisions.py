@@ -42,7 +42,7 @@ def app():
         display_df = display_df.rename(columns={"game_date": "Date", "play_type": "Play Type", "ydstogo": "Yards to Go"}, errors="raise")
         plot_df = data[plot_columns]
 
-        col1,col2 = st.columns
+        col1,col2 = st.columns(2)
 
         with col1:
          st.write("Team "+team+" decisions", display_df.sort_index())
