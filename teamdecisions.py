@@ -17,6 +17,19 @@ def app():
   df = data_prep() #fourthdown data
   #logos = team_logos()
   teamcolors = team_colors() #team colors
+  def change_label_style(label, font_size='12px', font_color='black', font_family='sans-serif'):
+    html = f"""
+    <script>
+        var elems = window.parent.document.querySelectorAll('p');
+        var elem = Array.from(elems).find(x => x.innerText == '{label}');
+        elem.style.fontSize = '{font_size}';
+        elem.style.color = '{font_color}';
+        elem.style.fontFamily = '{font_family}';
+    </script>
+    """
+    st.components.v1.html(html)
+
+
   
 
 
@@ -91,8 +104,9 @@ def app():
         st.subheader('Score')
         color_pos = teamcolors[teamcolors['team']==team]
         colorA = color_pos['color'].astype(str)
-        score_pos = '<p style="font-family:sans-serif; color:Blue; font-size: 60px;">' + ''.join(pt_score) + '</p>'
-        st.markdown(score_pos, unsafe_allow_html=True)
+        scoreA = ' '.join(pt_score)
+        st.text_input(scoreA)
+        change_label_style(scoreA, '60px', colorA)
     with colB:
       st.write("Game Status", plot_df)
     with colC:
