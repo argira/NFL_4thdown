@@ -54,7 +54,7 @@ def app():
          #st.write("Team "+team+" decisions", display_df.sort_index())
          
         data = data[data["game_list"]==game]
-        against_team = data['away_team'].unique().astype(str) 
+        against_team = list(data['away_team'].unique()) 
         data = data[data['posteam']==team]
 
 
@@ -75,7 +75,7 @@ def app():
 
         with col2:
 
-          st.image('/image'+ against_team +'.png') 
+          st.image('/image'+ against_team.astype(str) +'.png') 
           st.markdown("Show the Scoreboard")
 
           
