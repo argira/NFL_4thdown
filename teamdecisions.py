@@ -37,7 +37,7 @@ def app():
         data = df[df["home_team"]==team]
         data = data[data["season"]==season]
         keep_columns = ['game_date','play_type','ydstogo','away_team','game_seconds_remaining']
-        plot_columns = ['ydsnet','play_type','ydstogo','Decision']
+        scoreboard_columns = ['ydsnet','play_type','ydstogo','Decision,game_seconds_remaining','game_half','yardline_100','qtr','side_of_fied','posteam_score','defteam_score']
         display_df = data[keep_columns]
         display_df = display_df.rename(columns={"game_date": "Date", "play_type": "Play Type", "ydstogo": "Yards to Go"}, errors="raise")
         
@@ -48,6 +48,7 @@ def app():
         game_list = list(data['game_list'].unique())
 
 
+#keep_columns = ['season','home_team','away_team','down','game_date','game_half','game_seconds_remaining', 'play_type', 'ydstogo','yardline_100', 'posteam', 'qtr','side_of_field', 'defteam', 'side_of_field','posteam_score','defteam_score','roof','surface','temp','wind','stadium']
         
         col1,col2 = st.columns(2)
 
@@ -55,22 +56,24 @@ def app():
          game = st.selectbox("choose a game",(game_list))
          #st.write("Team "+team+" decisions", display_df.sort_index())
          data = data[data["game_list"]==game]
+         data = data[data['posteam']==team]
          data['Decision'] = 'Seconds remaining ' + data['game_seconds_remaining'].astype(str) + ' Yards to go ' + data['ydstogo'].astype(str)
          decisions = list(data['Decision'].unique())
 
          decision = st.selectbox( "Choose a decision",(decisions))
          
-         plot_df = data[plot_columns]
+         plot_df = data[scoreboard_columns]
          plot_df = plot_df[plot_df['Decision']==decision]
 
         with col2:
 
+          st.markdown("Show the Scoreboard")
+          
 
-
-          plt.figure()
-          sns.catplot(data=plot_df,x='play_type', y='ydsnet',kind='box', palette='plasma')
-          plt.xticks(rotation=45)
-          st.pyplot(plt)
+          #plt.figure()
+          #sns.catplot(data=plot_df,x='play_type', y='ydsnet',kind='box', palette='plasma')
+          #plt.xticks(rotation=45)
+          #st.pyplot(plt)
 
         
 
