@@ -94,7 +94,7 @@ def app():
         st.subheader('Score')
         color_pos = teamcolors[teamcolors['team']==team]
         colorA = color_pos['color'].astype(str)
-        score_pos = '<p style="font-family:sans-serif; color:Green; font-size: 58px;">'+ ''.join(pt_score)+' </p>'
+        score_pos = '<p style="font-family:sans-serif; color:Yellow; font-size: 58px;">'+ ''.join(pt_score)+' </p>'
         st.markdown(score_pos, unsafe_allow_html=True)
        
     with colB:
@@ -106,7 +106,7 @@ def app():
       with away2:
         dt_score = plot_df['defteam_score'].astype(int).astype(str)
         st.subheader('Score')
-        score_def = '<p style="font-family:sans-serif; color:Green; font-size: 58px;">'+ ''.join(dt_score)+' </p>'
+        score_def = '<p style="font-family:sans-serif; color:Yellow; font-size: 58px;">'+ ''.join(dt_score)+' </p>'
         st.markdown(score_def, unsafe_allow_html=True)
         
 
