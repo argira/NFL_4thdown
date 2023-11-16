@@ -78,6 +78,7 @@ def app():
 
           st.image('images/'+' '.join(against_team) +'.png') 
           #st.markdown("Show the Scoreboard")
+          st.write("Game Status", plot_df)
 
           
 
