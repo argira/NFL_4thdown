@@ -100,7 +100,9 @@ def app():
       with away2:
         dt_score = plot_df['defteam_score'].astype(int).astype(str)
         st.subheader('Score')
-        st.write(' '.join(dt_score))
+        new_title = '<p style="font-family:sans-serif; color:Green; font-size: 42px;">'+ ''.join(dt_score)+' </p>'
+        st.markdown(new_title, unsafe_allow_html=True)
+        
 
 
           
