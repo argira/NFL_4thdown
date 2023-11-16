@@ -76,11 +76,11 @@ def app():
 
             st.image('images/'+' '.join(against_team) +'.png') 
           #st.markdown("Show the Scoreboard")
-        decision = st.selectbox( "Choose a decision",(decisions))
+    decision = st.selectbox( "Choose a decision",(decisions))
          
-        plot_df = data[data['Decision']==decision]
-        plot_df = plot_df[scoreboard_columns]
-        st.write("Game Status", plot_df)
+    plot_df = data[data['Decision']==decision]
+    plot_df = plot_df[scoreboard_columns]
+    st.write("Game Status", plot_df)
 
           
 
@@ -88,27 +88,27 @@ def app():
           #sns.catplot(data=plot_df,x='play_type', y='ydsnet',kind='box', palette='plasma')
           #plt.xticks(rotation=45)
           #st.pyplot(plt)
-        plt.figure()
+    plt.figure()
 
-        yl=plot_df['yardline_100']
-        fig, ax = create_football_field(highlight_line=True,
+    yl=plot_df['yardline_100']
+    fig, ax = create_football_field(highlight_line=True,
                                 highlight_line_number=yl)
 
-        plt.xlim(0, 120)
-        plt.ylim(0, 53.5)
-        plt.vlines(x=35,
+    plt.xlim(0, 120)
+    plt.ylim(0, 53.5)
+    plt.vlines(x=35,
            ymin=-5,
            ymax=58.3,
            colors=["yellow","yellow"],
            linestyles="dashed",
            linewidth=2)#"dashed"
 
-        plt.text(5, 25, team,
+    plt.text(5, 25, team,
          size="x-large", 
          rotation=90,
          color="white")
 
-        plt.text(112, 25, ' '.join(against_team),
+    plt.text(112, 25, ' '.join(against_team),
          size="x-large", 
          rotation=270,
          color="white")
