@@ -98,7 +98,8 @@ def app():
         st.markdown(score_pos, unsafe_allow_html=True)
        
     with colB:
-      st.write("Game Status", plot_df['qtr'])
+      st.write("Game Status")
+      st.write('Quarter',plot_df['qtr'].astype(str))
 
 
 
