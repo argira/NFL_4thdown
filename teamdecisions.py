@@ -32,7 +32,7 @@ def app():
     )
     #logo = logos[logos['team']==team]
     #l = logos['team_logo'].astype(str)
-    st.image('images/'+team+'.png')
+    
 
     if not team: st.error("Please select a team.")
     else:
@@ -71,7 +71,8 @@ def app():
          plot_df = plot_df[plot_df['Decision']==decision]
 
         with col2:
-          st.image('/image'+data['away_team']+'.png') 
+          
+          st.image('/image'+data['defteam']+'.png') 
           st.markdown("Show the Scoreboard")
 
           def create_football_field(linenumbers=True,
@@ -158,7 +159,7 @@ def app():
 
   
   team_decisions(df)
-  
+
   
 
   
