@@ -85,6 +85,7 @@ def app():
           #sns.catplot(data=plot_df,x='play_type', y='ydsnet',kind='box', palette='plasma')
           #plt.xticks(rotation=45)
           #st.pyplot(plt)
+        plt.figure()
 
         yl=plot_df['yardline_100']
         fig, ax = create_football_field(highlight_line=True,
@@ -108,11 +109,11 @@ def app():
          size="x-large", 
          rotation=270,
          color="white")
+        plt.show()
 
 
   
   team_decisions(df)
-  plt.show()
 
   
 
