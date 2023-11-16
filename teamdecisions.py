@@ -98,7 +98,15 @@ def app():
         st.markdown(score_pos, unsafe_allow_html=True)
        
     with colB:
-      st.write("Game Status", plot_df)
+      st.write("Game Status", plot_df['qtr','yardline_100','ydstogo'])
+
+
+
+
+
+
+
+
     with colC:
       away1, away2 = st.columns(2)
       with away1:
