@@ -37,14 +37,14 @@ def app():
         data = df[df["home_team"]==team]
         data = data[data["season"]==season]
         keep_columns = ['game_date','play_type','ydstogo','away_team','game_seconds_remaining']
-        plot_columns = ['ydsnet','play_type','ydstogo','Decision']
+        plot_columns = ['ydsnet','play_type','ydstogo','Decision','home_score','posteam','defteam','game_half','qtr','yardline_100']
         display_df = data[keep_columns]
         display_df = display_df.rename(columns={"game_date": "Date", "play_type": "Play Type", "ydstogo": "Yards to Go"}, errors="raise")
         
 
         #get key by combining columns
         
-        data['game_list'] = data['game_date'].astype(str) + data['away_team']
+        data['game_list'] ='Game Date ' + data['game_date'].astype(str) +" Against "+ data['away_team']
         game_list = list(data['game_list'])
 
 
@@ -55,7 +55,7 @@ def app():
          game = st.selectbox("choose a game",(game_list))
          #st.write("Team "+team+" decisions", display_df.sort_index())
          data = data[data["game_list"]==game]
-         data['Decision'] = 'Seconds remaining ' + data['game_seconds_remaining'].astype(str) + ' ' + 'Yards to go' + data['ydstogo'].astype(str)
+         data['Decision'] = 'Seconds remaining ' + data['game_seconds_remaining'].astype(str) + ' Yards to go ' + data['ydstogo'].astype(str)
          decisions = list(data['Decision'].unique())
 
          decision = st.selectbox( "Choose a decision",(decisions))
