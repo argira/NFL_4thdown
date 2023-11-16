@@ -16,7 +16,7 @@ def app():
   st.header("To Do or Not to Do a 4th down conversion")
   df = data_prep() #fourthdown data
   #logos = team_logos()
-  team_colors = team_colors() #team colors
+  teamcolors = team_colors() #team colors
   
 
 
@@ -89,7 +89,7 @@ def app():
       with logB:
         pt_score = plot_df['posteam_score'].astype(int).astype(str)
         st.subheader('Score')
-        color_pos = team_colors[team_colors['team']==team]
+        color_pos = teamcolors[teamcolors['team']==team]
         colorA = color_pos['color'].astype(str)
         score_pos = '<p style="font-family:sans-serif; color:'+colorA+'; font-size: 60px;">'+ ''.join(pt_score)+' </p>'
         st.markdown(score_pos, unsafe_allow_html=True)
