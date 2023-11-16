@@ -72,7 +72,7 @@ def app():
          decision = st.selectbox( "Choose a decision",(decisions))
          
          plot_df = data[data['Decision']==decision]
-         plot_df = data[scoreboard_columns]
+         plot_df = plot_df[scoreboard_columns]
 
         with col2:
 
@@ -111,11 +111,12 @@ def app():
          size="x-large", 
          rotation=270,
          color="white")
-        plt.show()
+       
 
 
   
   team_decisions(df)
+  plt.show()
 
   
 
