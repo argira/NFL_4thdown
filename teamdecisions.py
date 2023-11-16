@@ -36,18 +36,36 @@ def app():
       else:
         data = df[df["home_team"]==team]
         data = data[data["season"]==season]
-        keep_columns = ['game_date','play_type','ydstogo']
-        plot_columns = ['ydsnet','play_type','ydstogo']
+        keep_columns = ['game_date','play_type','ydstogo','away_team','game_seconds_remaining']
+        plot_columns = ['ydsnet','play_type','ydstogo','Decision']
         display_df = data[keep_columns]
         display_df = display_df.rename(columns={"game_date": "Date", "play_type": "Play Type", "ydstogo": "Yards to Go"}, errors="raise")
-        plot_df = data[plot_columns]
+        
 
+        #get key by combining columns
+        
+        data['game_list'] = data['game_date'].astype(str) + data['away_team']
+        game_list = list(data['game_list'])
+
+
+        
         col1,col2 = st.columns(2)
 
         with col1:
-         st.write("Team "+team+" decisions", display_df.sort_index())
+         game = st.selectbox("choose a game",(game_list))
+         #st.write("Team "+team+" decisions", display_df.sort_index())
+         data = data[data["game_list"]==game]
+         data['Decision'] = data['game_seconds_remaining'].astype(str) + data['ydstogo'].astype(str)
+         decisions = list(data['Decision'])
+
+         decision = st.selectbox( "Choose a decision",(decisions))
+         
+         plot_df = data[plot_columns]
+         plot_df = plot_df[plot_df['Decision']==decision]
 
         with col2:
+
+
 
           plt.figure()
           sns.catplot(data=plot_df,x='play_type', y='ydsnet',kind='box', palette='plasma')
