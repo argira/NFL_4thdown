@@ -57,6 +57,7 @@ def app():
         col1,col2 = st.columns(2)
 
         with col1:
+         st.image('images/'+team+'.png')
          game = st.selectbox("choose a game",(game_list))
          #st.write("Team "+team+" decisions", display_df.sort_index())
          data = data[data["game_list"]==game]
@@ -70,8 +71,9 @@ def app():
          plot_df = plot_df[plot_df['Decision']==decision]
 
         with col2:
-
+          st.image('/image'+data['away_team']+'.png') 
           st.markdown("Show the Scoreboard")
+
           def create_football_field(linenumbers=True,
                           endzones=True,
                           highlight_line=False,
@@ -156,6 +158,7 @@ def app():
 
   
   team_decisions(df)
+  
   
 
   
