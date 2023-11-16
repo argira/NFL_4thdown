@@ -22,3 +22,9 @@ def team_colors():
     team_colors = pd.read_csv("data/teamcolors.csv")
     return team_colors
 
+@st.cache_data
+
+def team_logos():
+    team_logos = pd.read_csv("data/teamlogos.csv")
+    return team_logos
+
