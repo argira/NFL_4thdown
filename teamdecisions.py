@@ -104,7 +104,7 @@ def app():
          rotation=90,
          color="white")
 
-        plt.text(112, 25, ' '.joint(against_team),
+        plt.text(112, 25, ' '.join(against_team),
          size="x-large", 
          rotation=270,
          color="white")
