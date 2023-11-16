@@ -45,7 +45,7 @@ def app():
         #get key by combining columns
         
         data['game_list'] ='Game Date ' + data['game_date'].astype(str) +" Against "+ data['away_team']
-        game_list = list(data['game_list'])
+        game_list = list(data['game_list'].unique())
 
 
         
