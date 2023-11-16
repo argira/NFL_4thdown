@@ -112,6 +112,7 @@ def app():
 
   
   team_decisions(df)
+  plt.show()
 
   
 
