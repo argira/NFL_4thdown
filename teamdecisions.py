@@ -70,18 +70,16 @@ def app():
             st.image('images/'+team+'.png')
          
             data['Decision'] = 'Quarter ' + data['qtr'].astype(str) + ' Seconds remaining ' + data['game_seconds_remaining'].astype(str) + ' 4th Down and ' + data['ydstogo'].astype(str) + ' yards to go'
-            decisions = list(data['Decision'].unique())
-
-            decision = st.selectbox( "Choose a decision",(decisions))
-         
-            plot_df = data[data['Decision']==decision]
-            plot_df = plot_df[scoreboard_columns]
+            decisions = list(data['Decision'].unique()) 
 
           with col2:
 
             st.image('images/'+' '.join(against_team) +'.png') 
           #st.markdown("Show the Scoreboard")
-        
+        decision = st.selectbox( "Choose a decision",(decisions))
+         
+        plot_df = data[data['Decision']==decision]
+        plot_df = plot_df[scoreboard_columns]
         st.write("Game Status", plot_df)
 
           
