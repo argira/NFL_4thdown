@@ -75,7 +75,7 @@ def app():
 
         with col2:
 
-          st.image('/image'+ against_team.astype(str) +'.png') 
+          st.image('/image'+ ' '.join(against_team) +'.png') 
           st.markdown("Show the Scoreboard")
 
           
