@@ -21,62 +21,65 @@ def app():
 
 
   def team_decisions(df):
-    teams = list(df["home_team"].unique())
-    teams.sort()
-    seasons = list(df['season'].unique())
-    seasons.sort()
-    team = st.selectbox(
+    cola, colb = st.columns([3,10])
+    with cola:
+      teams = list(df["home_team"].unique())
+      teams.sort()
+      seasons = list(df['season'].unique())
+      seasons.sort()
+      team = st.selectbox(
       "Select a Team",
-      (teams))
-    season = st.selectbox( "Select a Season",
-      (seasons)
-    )
+        (teams))
+      season = st.selectbox( "Select a Season",
+        (seasons)
+      )
     #logo = logos[logos['team']==team]
     #l = logos['team_logo'].astype(str)
     
+    with colb:
 
-    if not team: st.error("Please select a team.")
-    else:
-      if not season:st.error("Please select a season")
+      if not team: st.error("Please select a team.")
       else:
-        data = df[df["home_team"]==team]
-        data = data[data["season"]==season]
-        keep_columns = ['game_date','play_type','ydstogo','away_team','game_seconds_remaining']
-        scoreboard_columns = ['qtr','yardline_100','play_type','ydstogo','game_seconds_remaining','game_half','side_of_field','posteam_score','defteam_score']
-        display_df = data[keep_columns]
-        display_df = display_df.rename(columns={"game_date": "Date", "play_type": "Play Type", "ydstogo": "Yards to Go"}, errors="raise")
+        if not season:st.error("Please select a season")
+        else:
+          data = df[df["home_team"]==team]
+          data = data[data["season"]==season]
+          keep_columns = ['game_date','play_type','ydstogo','away_team','game_seconds_remaining']
+          scoreboard_columns = ['qtr','yardline_100','play_type','ydstogo','game_seconds_remaining','game_half','side_of_field','posteam_score','defteam_score']
+          display_df = data[keep_columns]
+          display_df = display_df.rename(columns={"game_date": "Date", "play_type": "Play Type", "ydstogo": "Yards to Go"}, errors="raise")
         
 
         #get key by combining columns
         
-        data['game_list'] ='Game Date ' + data['game_date'].astype(str) +" Against "+ data['away_team']
-        game_list = list(data['game_list'].unique())
-        game = st.selectbox("choose a game",(game_list))
-         #st.write("Team "+team+" decisions", display_df.sort_index())
+          data['game_list'] ='Game Date ' + data['game_date'].astype(str) +" Against "+ data['away_team']
+          game_list = list(data['game_list'].unique())
+          game = st.selectbox("choose a game",(game_list))
+          #st.write("Team "+team+" decisions", display_df.sort_index())
          
-        data = data[data["game_list"]==game]
-        against_team = list(data['away_team'].unique()) 
-        data = data[data['posteam']==team]
+          data = data[data["game_list"]==game]
+          against_team = list(data['away_team'].unique()) 
+          data = data[data['posteam']==team]
 
 
 #keep_columns = ['season','home_team','away_team','down','game_date','game_half','game_seconds_remaining', 'play_type', 'ydstogo','yardline_100', 'posteam', 'qtr','side_of_field', 'defteam', 'side_of_field','posteam_score','defteam_score','roof','surface','temp','wind','stadium']
         
-        col1,col2 = st.columns(2)
+          col1,col2 = st.columns(2)
 
-        with col1:
-         st.image('images/'+team+'.png')
+          with col1:
+            st.image('images/'+team+'.png')
          
-         data['Decision'] = 'Quarter ' + data['qtr'].astype(str) + ' Seconds remaining ' + data['game_seconds_remaining'].astype(str) + ' 4th Down and ' + data['ydstogo'].astype(str) + ' yards to go'
-         decisions = list(data['Decision'].unique())
+            data['Decision'] = 'Quarter ' + data['qtr'].astype(str) + ' Seconds remaining ' + data['game_seconds_remaining'].astype(str) + ' 4th Down and ' + data['ydstogo'].astype(str) + ' yards to go'
+            decisions = list(data['Decision'].unique())
 
-         decision = st.selectbox( "Choose a decision",(decisions))
+            decision = st.selectbox( "Choose a decision",(decisions))
          
-         plot_df = data[data['Decision']==decision]
-         plot_df = plot_df[scoreboard_columns]
+            plot_df = data[data['Decision']==decision]
+            plot_df = plot_df[scoreboard_columns]
 
-        with col2:
+          with col2:
 
-          st.image('images/'+' '.join(against_team) +'.png') 
+            st.image('images/'+' '.join(against_team) +'.png') 
           #st.markdown("Show the Scoreboard")
         
         st.write("Game Status", plot_df)
