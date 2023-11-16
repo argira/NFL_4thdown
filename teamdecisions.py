@@ -104,7 +104,7 @@ def app():
                     </style>
                       ''', unsafe_allow_html=True)
 
-        st.markdown('<p class="scoreStyle">' + ''.joint(pt_score) + '</p>', unsafe_allow_html=True) 
+        st.markdown('<p class="scoreStyle">' + ''.join(pt_score) + '</p>', unsafe_allow_html=True) 
        
     with colB:
       st.write("Game Status", plot_df)
