@@ -98,7 +98,7 @@ def app():
                     <style>
                       .scoreStyle {
                                 font-family:sans-serif;
-                                color:'''+ colorA + ''';
+                                color:Red;
                                 font-size: 58px;
                       }
                     </style>
