@@ -55,8 +55,8 @@ def app():
          game = st.selectbox("choose a game",(game_list))
          #st.write("Team "+team+" decisions", display_df.sort_index())
          data = data[data["game_list"]==game]
-         data['Decision'] = data['game_seconds_remaining'].astype(str) + data['ydstogo'].astype(str)
-         decisions = list(data['Decision'])
+         data['Decision'] = 'Seconds remaining ' + data['game_seconds_remaining'].astype(str) + ' ' + 'Yards to go' + data['ydstogo'].astype(str)
+         decisions = list(data['Decision'].unique())
 
          decision = st.selectbox( "Choose a decision",(decisions))
          
