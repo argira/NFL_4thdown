@@ -7,7 +7,7 @@ import seaborn as sns
 import altair as alt
 from load_data import data_prep
 from footballfield import create_football_field
-#from load_data import team_logos
+from load_data import team_colors
 from scipy import stats
 #from helpers import pearsonr_ci
 
@@ -16,7 +16,7 @@ def app():
   st.header("To Do or Not to Do a 4th down conversion")
   df = data_prep() #fourthdown data
   #logos = team_logos()
-  #team_colors = team_colors() #team colors
+  team_colors = team_colors() #team colors
   
 
 
@@ -33,8 +33,7 @@ def app():
       season = st.selectbox( "Select a Season",
         (seasons)
       )
-    #logo = logos[logos['team']==team]
-    #l = logos['team_logo'].astype(str)
+    
     
     with colb:
 
@@ -90,7 +89,9 @@ def app():
       with logB:
         pt_score = plot_df['posteam_score'].astype(int).astype(str)
         st.subheader('Score')
-        score_pos = '<p style="font-family:sans-serif; color:Blue; font-size: 60px;">'+ ''.join(pt_score)+' </p>'
+        color_pos = team_colors[team_colors['team']==team]
+        colorA = color_pos['color'].astype(str)
+        score_pos = '<p style="font-family:sans-serif; color:'+colorA+'; font-size: 60px;">'+ ''.join(pt_score)+' </p>'
         st.markdown(score_pos, unsafe_allow_html=True)
     with colB:
       st.write("Game Status", plot_df)
