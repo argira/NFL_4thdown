@@ -98,7 +98,9 @@ def app():
       with away1:
         st.image('images/'+' '.join(against_team) +'.png')
       with away2:
-        st.write('Score',plot_df['defteam_score'])
+        dt_score = plot_df['defteam_score'].astype(int).astype(str)
+        st.subheader('Score')
+        st.write(' '.join(dt_score))
 
 
           
