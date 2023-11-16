@@ -98,7 +98,7 @@ def app():
         st.markdown(score_pos, unsafe_allow_html=True)
        
     with colB:
-      st.write("Game Status", plot_df['qtr','yardline_100','ydstogo'])
+      st.write("Game Status", plot_df['qtr'])
 
 
 
