@@ -104,7 +104,7 @@ def app():
         color_pos = teamcolors[teamcolors['team']==team]
         colorA = color_pos['color'].astype(str)
         scoreA = ' '.join(pt_score)
-        st.markup(scoreA)
+        st.markdown(scoreA)
         change_label_style(scoreA, '60px', colorA)
     with colB:
       st.write("Game Status", plot_df)
