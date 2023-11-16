@@ -74,11 +74,13 @@ def app():
          plot_df = data[scoreboard_columns]
          plot_df = plot_df[plot_df['Decision']==decision]
 
+         st.write("Game Status", plot_df)
+
         with col2:
 
           st.image('images/'+' '.join(against_team) +'.png') 
           #st.markdown("Show the Scoreboard")
-          st.write("Game Status", plot_df)
+          
 
           
 
