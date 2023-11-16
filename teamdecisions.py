@@ -37,7 +37,7 @@ def app():
         data = df[df["home_team"]==team]
         data = data[data["season"]==season]
         keep_columns = ['game_date','play_type','ydstogo','away_team','game_seconds_remaining']
-        plot_columns = ['ydsnet','play_type','ydstogo','Decision','home_score','posteam','defteam','game_half','qtr','yardline_100']
+        plot_columns = ['ydsnet','play_type','ydstogo','Decision']
         display_df = data[keep_columns]
         display_df = display_df.rename(columns={"game_date": "Date", "play_type": "Play Type", "ydstogo": "Yards to Go"}, errors="raise")
         
