@@ -91,7 +91,7 @@ def app():
         st.subheader('Score')
         color_pos = teamcolors[teamcolors['team']==team]
         colorA = color_pos['color'].astype(str)
-        score_pos = '<p style=""font-family:sans-serif; color:' + colorA + '; font-size: 60px;"">' + ''.join(pt_score) + '</p>'
+        score_pos = '<p style="font-family:sans-serif; color:Blue; font-size: 60px;">' + ''.join(pt_score) + '</p>'
         st.markdown(score_pos, unsafe_allow_html=True)
     with colB:
       st.write("Game Status", plot_df)
