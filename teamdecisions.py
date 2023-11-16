@@ -72,7 +72,7 @@ def app():
 
         with col2:
 
-          st.image('/image'+data['away_team']+'.png') 
+          st.image('/image'+data['away_team'].astype(str)+'.png') 
           st.markdown("Show the Scoreboard")
 
           def create_football_field(linenumbers=True,
