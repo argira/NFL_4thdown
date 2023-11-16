@@ -88,8 +88,9 @@ def app():
       with logA:
         st.image('images/'+team+'.png')
       with logB:
-        pt_score = plot_df['posteam_score'].astype(str)
-        st.write('Score',''.join(pt_score))
+        pt_score = plot_df['posteam_score'].astype(int).astype(str)
+        st.subheader('Score')
+        st.write(''.join(pt_score))
     with colB:
       st.write("Game Status", plot_df)
     with colC:
