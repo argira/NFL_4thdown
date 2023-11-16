@@ -71,8 +71,8 @@ def app():
 
          decision = st.selectbox( "Choose a decision",(decisions))
          
+         plot_df = data[data['Decision']==decision]
          plot_df = data[scoreboard_columns]
-         plot_df = plot_df[plot_df['Decision']==decision]
 
         with col2:
 
