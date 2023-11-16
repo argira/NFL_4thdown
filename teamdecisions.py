@@ -80,7 +80,24 @@ def app():
          
     plot_df = data[data['Decision']==decision]
     plot_df = plot_df[scoreboard_columns]
-    st.write("Game Status", plot_df)
+
+    colA,colB,colC = st.columns(3)
+
+    with colA:
+      logA, logB = st.columns(2)
+      with logA:
+        st.image('images/'+team+'.png')
+      with logB:
+        st.write('Score',plot_df['posteam_score'])
+    with colB:
+      st.write("Game Status", plot_df)
+    with colC:
+      away1, away2 = st.columns(2)
+      with away1:
+        st.image('images/'+' '.join(against_team) +'.png')
+      with away2:
+        st.write('Score',plot_df['defteam_score'])
+
 
           
 
