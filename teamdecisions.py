@@ -90,7 +90,8 @@ def app():
       with logB:
         pt_score = plot_df['posteam_score'].astype(int).astype(str)
         st.subheader('Score')
-        st.write(''.join(pt_score))
+        score_pos = '<p style="font-family:sans-serif; color:Blue; font-size: 60px;">'+ ''.join(pt_score)+' </p>'
+        st.markdown(score_pos, unsafe_allow_html=True)
     with colB:
       st.write("Game Status", plot_df)
     with colC:
@@ -100,8 +101,8 @@ def app():
       with away2:
         dt_score = plot_df['defteam_score'].astype(int).astype(str)
         st.subheader('Score')
-        new_title = '<p style="font-family:sans-serif; color:Green; font-size: 42px;">'+ ''.join(dt_score)+' </p>'
-        st.markdown(new_title, unsafe_allow_html=True)
+        score_def = '<p style="font-family:sans-serif; color:Green; font-size: 60px;">'+ ''.join(dt_score)+' </p>'
+        st.markdown(score_def, unsafe_allow_html=True)
         
 
 
