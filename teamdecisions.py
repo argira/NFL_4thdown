@@ -103,14 +103,19 @@ def app():
       with score1:
         st.markdown('Quarter')
         quarter = plot_df['qtr'].astype(str)
-        quarter_info =  '<p style="font-family:sans-serif; color:blue; font-size: 30px;">'+ ''.join(quarter)+' </p>'
+        quarter_info =  '<p style="font-family:sans-serif; color:blue; font-size: 20px;">'+ ''.join(quarter)+' </p>'
         st.markdown(quarter_info, unsafe_allow_html=True)
       with score2:
         st.markdown('Ball on yard')
         st.markdown(quarter_info, unsafe_allow_html=True)
         yard_line = plot_df['yardline_100'].astype(int).astype(str)
-        yard_info =  '<p style="font-family:sans-serif; color:blue; font-size: 30px;">'+ ''.join(yard_line)+' </p>'
+        yard_info =  '<p style="font-family:sans-serif; color:blue; font-size: 20px;">'+ ''.join(yard_line)+' </p>'
         st.markdown(yard_info, unsafe_allow_html=True)
+      with score3:
+        st.markdown('Yards to Go')
+        quarter = plot_df['ydstogo'].astype(str)
+        quarter_info =  '<p style="font-family:sans-serif; color:blue; font-size: 20px;">'+ ''.join(quarter)+' </p>'
+        st.markdown(quarter_info, unsafe_allow_html=True)
 
 
 
@@ -126,7 +131,7 @@ def app():
       with away2:
         dt_score = plot_df['defteam_score'].astype(int).astype(str)
         st.subheader('Score')
-        score_def = '<p style="font-family:sans-serif; color:Yellow; font-size: 30px;">'+ ''.join(dt_score)+' </p>'
+        score_def = '<p style="font-family:sans-serif; color:Yellow; font-size: 58px;">'+ ''.join(dt_score)+' </p>'
         st.markdown(score_def, unsafe_allow_html=True)
         
 
