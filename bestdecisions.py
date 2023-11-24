@@ -6,7 +6,7 @@ import seaborn as sns
 #import statsmodels.formula.api as sm
 import altair as alt
 from load_data import data_prep_new
-#from load_data import team_colors
+from load_data import team_colors
 from scipy import stats
 #from helpers import pearsonr_ci
 

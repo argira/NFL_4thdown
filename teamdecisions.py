@@ -13,7 +13,7 @@ from scipy import stats
 
 
 def app():
-  st.header("To Do or Not to Do a 4th down conversion")
+  st.header("Win Probability based on 4th down decision")
   df = data_prep() #fourthdown data
   #logos = team_logos()
   teamcolors = team_colors() #team colors
@@ -66,19 +66,19 @@ def app():
 
 #keep_columns = ['season','home_team','away_team','down','game_date','game_half','game_seconds_remaining', 'play_type', 'ydstogo','yardline_100', 'posteam', 'qtr','side_of_field', 'defteam', 'side_of_field','posteam_score','defteam_score','roof','surface','temp','wind','stadium']
         
-          col1,col2 = st.columns(2)
+         # col1,col2 = st.columns(2)
 
-          with col1:
-            st.image('images/'+team+'.png')
+          #with col1:
+            #st.image('images/'+team+'.png')
          
             data['Decision'] = 'Quarter ' + data['qtr'].astype(str) + ' Seconds remaining ' + data['game_seconds_remaining'].astype(str) + ' 4th Down and ' + data['ydstogo'].astype(str) + ' yards to go'
             decisions = list(data['Decision'].unique()) 
 
-          with col2:
+         # with col2:
 
-            st.image('images/'+' '.join(against_team) +'.png') 
+          #  st.image('images/'+' '.join(against_team) +'.png') 
           #st.markdown("Show the Scoreboard")
-    decision = st.selectbox( "Choose a decision",(decisions))
+          decision = st.selectbox( "Choose a play",(decisions))
          
     plot_df = data[data['Decision']==decision]
     plot_df = plot_df[scoreboard_columns]
@@ -98,8 +98,14 @@ def app():
         st.markdown(score_pos, unsafe_allow_html=True)
        
     with colB:
-      st.write("Game Status")
-      st.write('Quarter',plot_df['qtr'].astype(str))
+      st.subheader("Game Status")
+      st.markdown('Quarter')
+      quarter = plot_df['qtr'].astype(str)
+      quarter_info =  '<p style="font-family:sans-serif; color:blue; font-size: 58px;">'+ ''.join(quarter)+' </p>'
+      st.markdown(quarter_info, unsafe_allow_html=True)
+      st.markdown("Ball on yard")
+      yard_line = plot_df['yardline_100'].astype(int).astype(str)
+      st.markdown(yard_line, unsafe_allow_html=True)
 
 
 
