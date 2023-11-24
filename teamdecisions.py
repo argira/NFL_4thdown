@@ -106,12 +106,12 @@ def app():
         quarter_info =  '<p style="font-family:sans-serif; color:blue; font-size: 30px;">'+ ''.join(quarter)+' </p>'
         st.markdown(quarter_info, unsafe_allow_html=True)
       with score2:
-        st.markdown('Ball on yard')
+        st.markdown('Ball on')
         yard_line = plot_df['yardline_100'].astype(int).astype(str)
         yard_info =  '<p style="font-family:sans-serif; color:blue; font-size: 30px;">'+ ''.join(yard_line)+' </p>'
         st.markdown(yard_info, unsafe_allow_html=True)
       with score3:
-        st.markdown('Yards to Go')
+        st.markdown('Yds to Go')
         ydstogo = plot_df['ydstogo'].astype(str)
         quarter_info =  '<p style="font-family:sans-serif; color:blue; font-size: 30px;">'+ ''.join(ydstogo)+' </p>'
         st.markdown(quarter_info, unsafe_allow_html=True)
