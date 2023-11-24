@@ -108,7 +108,7 @@ def app():
       with score2:
         st.markdown('Ball on yard')
         st.markdown(quarter_info, unsafe_allow_html=True)
-        yard_line = plot_df['yardline_100'].astype(int).astype(str)
+        yard_line = plot_df['yardline_100'].astype(str)
         yard_info =  '<p style="font-family:sans-serif; color:blue; font-size: 30px;">'+ ''.join(yard_line)+' </p>'
         st.markdown(yard_info, unsafe_allow_html=True)
       with score3:
