@@ -47,7 +47,7 @@ def app():
           data = df[df["home_team"]==team]
           data = data[data["season"]==season]
           keep_columns = ['game_date','play_type','ydstogo','away_team','game_seconds_remaining']
-          scoreboard_columns = ['qtr','yardline_100','play_type','ydstogo','game_seconds_remaining','game_half','side_of_field','posteam_score','defteam_score']
+          scoreboard_columns = ['qtr' , 'yardline_100' , 'play_type' , 'ydstogo' , 'game_seconds_remaining' , 'game_half' , 'side_of_field','posteam_score','defteam_score']
           display_df = data[keep_columns]
           display_df = display_df.rename(columns={"game_date": "Date", "play_type": "Play Type", "ydstogo": "Yards to Go"}, errors="raise")
         
@@ -81,7 +81,7 @@ def app():
     decision = st.selectbox( "Choose a play",(decisions))
          
     plot_df = data[data['Decision']==decision]
-    plot_df = plot_df[scoreboard_columns]
+    #plot_df = plot_df[scoreboard_columns]
 
     colA,colB,colC = st.columns(3)
 
