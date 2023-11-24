@@ -138,7 +138,7 @@ def app():
           
 
     plt.figure()
-    sns.catplot(data=data,x='play_type', y='ydsnet',kind='box', palette='plasma')
+    sns.catplot(data=data,x='play_type', y='yddstogo',kind='box', palette='plasma')
     plt.xticks(rotation=45)
     st.pyplot(plt)
     plt.figure()
