@@ -137,10 +137,10 @@ def app():
 
           
 
-          #plt.figure()
-          #sns.catplot(data=plot_df,x='play_type', y='ydsnet',kind='box', palette='plasma')
-          #plt.xticks(rotation=45)
-          #st.pyplot(plt)
+    plt.figure()
+    sns.catplot(data=data,x='play_type', y='ydsnet',kind='box', palette='plasma')
+    plt.xticks(rotation=45)
+    st.pyplot(plt)
     plt.figure()
 
     yl=plot_df['yardline_100']
