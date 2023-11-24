@@ -143,34 +143,34 @@ def app():
     st.pyplot(plt)
     plt.figure()
 
-    yl=plot_df['yardline_100']
-    fig, ax = create_football_field(highlight_line=True,
-                                highlight_line_number=yl)
+    #yl=plot_df['yardline_100']
+    #fig, ax = create_football_field(highlight_line=True,
+    #                            highlight_line_number=yl)
 
-    plt.xlim(0, 120)
-    plt.ylim(0, 53.5)
-    plt.vlines(x=35,
-           ymin=-5,
-           ymax=58.3,
-           colors=["yellow","yellow"],
-           linestyles="dashed",
-           linewidth=2)#"dashed"
+    #plt.xlim(0, 120)
+    #plt.ylim(0, 53.5)
+    #plt.vlines(x=35,
+    #       ymin=-5,
+    #       ymax=58.3,
+    #       colors=["yellow","yellow"],
+    #       linestyles="dashed",
+    #       linewidth=2)#"dashed"
 
-    plt.text(5, 25, team,
-         size="x-large", 
-         rotation=90,
-         color="white")
+    #plt.text(5, 25, team,
+    #     size="x-large", 
+    #     rotation=90,
+    #     color="white")
 
-    plt.text(112, 25, ' '.join(against_team),
-         size="x-large", 
-         rotation=270,
-         color="white")
+    #plt.text(112, 25, ' '.join(against_team),
+    #     size="x-large", 
+    #     rotation=270,
+    #     color="white")
        
 
 
   
   team_decisions(df)
-  plt.show()
+  #plt.show()
 
   
 
