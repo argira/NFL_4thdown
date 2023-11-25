@@ -170,7 +170,10 @@ def app():
        
 
     game_df = all_df[all_df['game_id']==game_id[0]]
-    teams = [game_df['home_team'],game_df['away_team']]
+    team1 = list(game_df['home_team'].unique())
+    team2 = list(game_df['away_team'].unique())
+    game_teams = [team1[0],team2[0]]
+    
 
    # graphic_filter = ((game_df['home_wp'].isna()==False) & 
     #              (game_df['away_wp'].isna()==False) & 
@@ -184,8 +187,8 @@ def app():
 
      
     colors = []
-    for team in teams:
-      colors.append(teamcolors[teamcolors["team"]==team]['color4'].tolist()[0])
+    for t in game_teams:
+      colors.append(teamcolors[teamcolors["team"]==t]['color4'].tolist()[0])
 
     #game_ids = pbp[graphic_filter]['game_id'].unique().tolist()
     #game_id = game_ids[1]
