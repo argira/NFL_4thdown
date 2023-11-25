@@ -189,7 +189,7 @@ def app():
      
     colors = []
     for t in game_teams:
-      colors.append(teamcolors[teamcolors["team"]==t]['color4'].tolist()[0])
+      colors.append(teamcolors[teamcolors["team"]==t]['color'].tolist()[0])
 
     #game_ids = pbp[graphic_filter]['game_id'].unique().tolist()
     #game_id = game_ids[1]
