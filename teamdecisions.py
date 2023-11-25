@@ -171,8 +171,8 @@ def app():
        
 
     game_df = all_df[all_df['game_id']==game_id[0]]
-    team1 = list(game_df['home_team'].unique())
-    team2 = list(game_df['away_team'].unique())
+    team1 = list(plot_df['home_team'].unique())
+    team2 = list(plot_df['away_team'].unique())
     game_teams = [team1[0],team2[0]]
     
 
