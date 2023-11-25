@@ -10,7 +10,7 @@ import streamlit as st
 
 @st.cache_data
 def data_prep():
-  df = pd.read_csv("data/small_data_team.csv")
+  df = pd.read_csv("data/data_pre.csv")
   return df
 @st.cache_data
 def data_prep_new():
