@@ -146,55 +146,52 @@ def app():
     #st.pyplot(plt)
     #plt.figure()
 
-    #yl=plot_df['yardline_100']
-    #fig, ax = create_football_field(highlight_line=True,
-    #                            highlight_line_number=yl)
 
-    #plt.xlim(0, 120)
-    #plt.ylim(0, 53.5)
-    #plt.vlines(x=35,
-    #       ymin=-5,
-    #       ymax=58.3,
-    #       colors=["yellow","yellow"],
-    #       linestyles="dashed",
-    #       linewidth=2)#"dashed"
-
-    #plt.text(5, 25, team,
-    #     size="x-large", 
-    #     rotation=90,
-    #     color="white")
-
-    #plt.text(112, 25, ' '.join(against_team),
-    #     size="x-large", 
-    #     rotation=270,
-    #     color="white")
        
 
     game_df = all_df[all_df['game_id']==game_id[0]]
     team1 = list(plot_df['home_team'].unique())
     team2 = list(plot_df['away_team'].unique())
     game_teams = [team1[0],team2[0]]
-    
 
-   # graphic_filter = ((game_df['home_wp'].isna()==False) & 
-    #              (game_df['away_wp'].isna()==False) & 
-     #             (game_df['home_team'].isin(teams)) &
-      #            (game_df['away_team'].isin(teams))
-       #          )
+    plt.figure()
+
+    yl=23
+    fig, ax = create_football_field(highlight_line=True,
+                                highlight_line_number=yl)
+
+    plt.xlim(0, 120)
+    plt.ylim(0, 53.5)
+    plt.vlines(x=35,
+           ymin=-5,
+           ymax=58.3,
+           colors=["yellow","yellow"],
+           linestyles="dashed",
+           linewidth=2)#"dashed"
+
+    plt.text(5, 25, teams[1],
+         size="x-large", 
+         rotation=90,
+         color="white")
+
+    plt.text(112, 25, teams[0],
+         size="x-large", 
+         rotation=270,
+         color="white")
+    
+    st.pyplot(plt)
+    plt.figure() 
+
+  
 
     cols_graphic = ['home_wp','away_wp','game_seconds_remaining']
 
-    #game_df[graphic_filter].shape
 
      
     colors = []
     for t in game_teams:
       colors.append(teamcolors[teamcolors["team"]==t]['color'].tolist()[0])
-
-    #game_ids = pbp[graphic_filter]['game_id'].unique().tolist()
-    #game_id = game_ids[1]
-
-    #print(pbp[graphic_filter & (pbp['game_id']==game_id)][cols_graphic].shape)
+      
     graph_data = game_df[cols_graphic].set_index("game_seconds_remaining").sort_index(ascending=True).rename(columns={"home_wp":game_teams[0],
                                 "away_wp":game_teams[1]})
 
