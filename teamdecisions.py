@@ -169,12 +169,12 @@ def app():
            linestyles="dashed",
            linewidth=2)#"dashed"
 
-    plt.text(5, 25, teams[1],
+    plt.text(5, 25, game_teams[0],
          size="x-large", 
          rotation=90,
          color="white")
 
-    plt.text(112, 25, teams[0],
+    plt.text(112, 25, game_teams[1],
          size="x-large", 
          rotation=270,
          color="white")
@@ -191,7 +191,7 @@ def app():
     colors = []
     for t in game_teams:
       colors.append(teamcolors[teamcolors["team"]==t]['color'].tolist()[0])
-      
+
     graph_data = game_df[cols_graphic].set_index("game_seconds_remaining").sort_index(ascending=True).rename(columns={"home_wp":game_teams[0],
                                 "away_wp":game_teams[1]})
 
