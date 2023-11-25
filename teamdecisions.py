@@ -139,11 +139,12 @@ def app():
     #color_pos = teamcolors[teamcolors['team']==team]
     #colorA = color_pos['color'].astype(str)      
 
-    plt.figure()
-    sns.catplot(data=data,x='play_type', y='ydstogo',kind='box', palette='plasma')
-    plt.xticks(rotation=45)
-    st.pyplot(plt)
-    plt.figure()
+    #plt.figure()
+    #sns.lineplot(data=game_df, palette="tab10", linewidth=2.5)
+    #sns.catplot(data=data,x='play_type', y='ydstogo',kind='box', palette='plasma')
+    #plt.xticks(rotation=45)
+    #st.pyplot(plt)
+    #plt.figure()
 
     #yl=plot_df['yardline_100']
     #fig, ax = create_football_field(highlight_line=True,
@@ -198,12 +199,19 @@ def app():
                 #.rename(columns={"home_wp",
                 #                "away_wp":"HOU"})
 
+    plt.figure()
+    sns.lineplot(data=game_df, palette="tab10", linewidth=2.5)
+    #sns.catplot(data=data,x='play_type', y='ydstogo',kind='box', palette='plasma')
+    plt.xticks(rotation=45)
+    st.pyplot(plt)
+    plt.figure()
+
     #display(graph_data.head())
-    graph_data.plot(color=colors)
-    plt.xlabel("Time Remaining (seconds)")
-    plt.ylabel("Win Probability")
-    plt.title(f"Win Probability Chart\n{teams[0]} vs {teams[1]}")
-    plt.gca().invert_xaxis()
+    #graph_data.plot(color=colors)
+    #plt.xlabel("Time Remaining (seconds)")
+    #plt.ylabel("Win Probability")
+    #plt.title(f"Win Probability Chart\n{teams[0]} vs {teams[1]}")
+    #plt.gca().invert_xaxis()
     
   
   team_decisions(df)
