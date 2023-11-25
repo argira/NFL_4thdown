@@ -48,10 +48,10 @@ def app():
         else:
           data = df[df["home_team"]==team]
           data = data[data["season"]==season]
-          keep_columns = ['game_id','game_date','play_type','ydstogo','away_team','game_seconds_remaining']
-          scoreboard_columns = ['qtr' , 'yardline_100' , 'play_type' , 'ydstogo' , 'game_seconds_remaining' , 'game_half' , 'side_of_field','posteam_score','defteam_score']
-          display_df = data[keep_columns]
-          display_df = display_df.rename(columns={"game_date": "Date", "play_type": "Play Type", "ydstogo": "Yards to Go"}, errors="raise")
+          #keep_columns = ['game_id','game_date','play_type','ydstogo','away_team','game_seconds_remaining']
+          #scoreboard_columns = ['qtr' , 'yardline_100' , 'play_type' , 'ydstogo' , 'game_seconds_remaining' , 'game_half' , 'side_of_field','posteam_score','defteam_score']
+          #display_df = data[keep_columns]
+          #display_df = display_df.rename(columns={"game_date": "Date", "play_type": "Play Type", "ydstogo": "Yards to Go"}, errors="raise")
         
 
         #get key by combining columns
