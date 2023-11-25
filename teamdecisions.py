@@ -139,8 +139,8 @@ def app():
     #color_pos = teamcolors[teamcolors['team']==team]
     #colorA = color_pos['color'].astype(str)      
 
-   #plt.figure()
-   # sns.catplot(data=data,x='play_type', y='ydstogo',kind='box', palette='plasma')
+    plt.figure()
+    sns.catplot(data=data,x='play_type', y='ydstogo',kind='box', palette='plasma')
     #plt.xticks(rotation=45)
     #st.pyplot(plt)
     #plt.figure()
@@ -199,13 +199,12 @@ def app():
                 #                "away_wp":"HOU"})
 
     #display(graph_data.head())
-    plt.figure()
     graph_data.plot(color=colors)
     plt.xlabel("Time Remaining (seconds)")
     plt.ylabel("Win Probability")
     plt.title(f"Win Probability Chart\n{teams[0]} vs {teams[1]}")
     plt.gca().invert_xaxis()
-    plt.figure()
+    
   
   team_decisions(df)
   #plt.show()
