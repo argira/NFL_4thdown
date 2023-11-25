@@ -195,9 +195,8 @@ def app():
     #game_id = game_ids[1]
 
     #print(pbp[graphic_filter & (pbp['game_id']==game_id)][cols_graphic].shape)
-    graph_data = game_df[cols_graphic].set_index("game_seconds_remaining").sort_index(ascending=True)
-                #.rename(columns={"home_wp",
-                #                "away_wp":"HOU"})
+    graph_data = game_df[cols_graphic].set_index("game_seconds_remaining").sort_index(ascending=True).rename(columns={"home_wp":game_teams[0],
+                                "away_wp":game_teams[1]})
 
     plt.figure()
     sns.lineplot(data=graph_data, palette=colors, linewidth=2.5)
