@@ -17,6 +17,7 @@ def create_football_field(linenumbers=True,
                           endzones=True,
                           highlight_line=False,
                           highlight_line_number=50,
+                          yards_to_go = 10,
                           highlighted_name='Line of Scrimmage',
                           fifty_is_los=False,
                           figsize=(12, 6.33)):
@@ -81,7 +82,7 @@ def create_football_field(linenumbers=True,
                 ax.plot([x, x], [29.73, 30.39], color='white')
 
             if highlight_line:
-              hl = highlight_line_number + 10
+              hl = highlight_line_number + yards_to_go
               plt.plot([hl, hl], [0, 53.3], color='yellow')
               # plt.text(hl + 2, 50, '<- {}'.format(highlighted_name),
               #          color='yellow')

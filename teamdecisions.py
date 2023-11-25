@@ -157,8 +157,9 @@ def app():
     plt.figure()
 
     yl=yard_line.astype(int)
+    yt=ydstogo.astype(int)
     fig, ax = create_football_field(highlight_line=True,
-                                highlight_line_number=yl)
+                                highlight_line_number=yl, yards_to_go=yt)
 
     plt.xlim(0, 120)
     plt.ylim(0, 53.5)
