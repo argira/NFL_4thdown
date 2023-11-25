@@ -30,7 +30,7 @@ def create_football_field(linenumbers=True,
             fig, ax = plt.subplots(1, figsize=figsize)
             ax.add_patch(rect)
 
-            plt.plot([10, 10, 10, 20, 20, 30, 30, 40, 40, 50, 50, 60, 60, 70, 70, 80,
+            plt.plot([10, 90, 10, 20, 20, 30, 30, 40, 40, 50, 50, 60, 60, 70, 70, 80,
               80, 90, 90, 100, 100, 110, 110, 120, 0, 0, 120, 120],
              [0, 0, 53.3, 53.3, 0, 0, 53.3, 53.3, 0, 0, 53.3, 53.3, 0, 0, 53.3,
               53.3, 0, 0, 53.3, 53.3, 0, 0, 53.3, 53.3, 53.3, 0, 0, 53.3],
@@ -82,7 +82,7 @@ def create_football_field(linenumbers=True,
                 ax.plot([x, x], [29.73, 30.39], color='white')
 
             if highlight_line:
-              hl = highlight_line_number + yards_to_go
+              hl = highlight_line_number
               plt.plot([hl, hl], [0, 53.3], color='yellow')
               # plt.text(hl + 2, 50, '<- {}'.format(highlighted_name),
               #          color='yellow')

@@ -163,7 +163,7 @@ def app():
 
     plt.xlim(0, 120)
     plt.ylim(0, 53.5)
-    plt.vlines(x=35,
+    plt.vlines(x=yl+yt,
            ymin=-5,
            ymax=58.3,
            colors=["yellow","yellow"],
