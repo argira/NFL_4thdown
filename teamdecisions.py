@@ -169,7 +169,7 @@ def app():
     #     color="white")
        
 
-    game_df = all_df[all_df['game_id']==game_id]
+    game_df = all_df[all_df['game_id']==game_id[0]]
     teams = [game_df['home_team'],game_df['away_team']]
 
    # graphic_filter = ((game_df['home_wp'].isna()==False) & 
