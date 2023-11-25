@@ -28,3 +28,7 @@ def team_logos():
     team_logos = pd.read_csv("data/teamlogos.csv")
     return team_logos
 
+def all_data():
+   all_data = pd.read_csv("data/all_data.csv")
+   return all_data
+

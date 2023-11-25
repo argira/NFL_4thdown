@@ -8,6 +8,7 @@ import altair as alt
 from load_data import data_prep
 from footballfield import create_football_field
 from load_data import team_colors
+from load_data import all_data
 from scipy import stats
 #from helpers import pearsonr_ci
 
@@ -17,6 +18,7 @@ def app():
   df = data_prep() #fourthdown data
   #logos = team_logos()
   teamcolors = team_colors() #team colors
+  all_df = all_data()
   
 
 
@@ -46,7 +48,7 @@ def app():
         else:
           data = df[df["home_team"]==team]
           data = data[data["season"]==season]
-          keep_columns = ['game_date','play_type','ydstogo','away_team','game_seconds_remaining']
+          keep_columns = ['game_id','game_date','play_type','ydstogo','away_team','game_seconds_remaining']
           scoreboard_columns = ['qtr' , 'yardline_100' , 'play_type' , 'ydstogo' , 'game_seconds_remaining' , 'game_half' , 'side_of_field','posteam_score','defteam_score']
           display_df = data[keep_columns]
           display_df = display_df.rename(columns={"game_date": "Date", "play_type": "Play Type", "ydstogo": "Yards to Go"}, errors="raise")
@@ -60,6 +62,7 @@ def app():
           #st.write("Team "+team+" decisions", display_df.sort_index())
          
           data = data[data["game_list"]==game]
+          game_id = data['game_id']
           against_team = list(data['away_team'].unique()) 
           data = data[data['posteam']==team]
 
@@ -92,8 +95,6 @@ def app():
       with logB:
         pt_score = plot_df['posteam_score'].astype(int).astype(str)
         st.subheader('Score')
-        color_pos = teamcolors[teamcolors['team']==team]
-        colorA = color_pos['color'].astype(str)
         score_pos = '<p style="font-family:sans-serif; color:Yellow; font-size: 58px;">'+ ''.join(pt_score)+' </p>'
         st.markdown(score_pos, unsafe_allow_html=True)
        
@@ -134,14 +135,15 @@ def app():
         st.markdown(score_def, unsafe_allow_html=True)
         
 
+    
+    #color_pos = teamcolors[teamcolors['team']==team]
+    #colorA = color_pos['color'].astype(str)      
 
-          
-
-    plt.figure()
-    sns.catplot(data=data,x='play_type', y='ydstogo',kind='box', palette='plasma')
-    plt.xticks(rotation=45)
-    st.pyplot(plt)
-    plt.figure()
+   #plt.figure()
+   # sns.catplot(data=data,x='play_type', y='ydstogo',kind='box', palette='plasma')
+    #plt.xticks(rotation=45)
+    #st.pyplot(plt)
+    #plt.figure()
 
     #yl=plot_df['yardline_100']
     #fig, ax = create_football_field(highlight_line=True,
@@ -167,7 +169,40 @@ def app():
     #     color="white")
        
 
+    game_df = all_df[all_df['game_id']==game_id]
+    teams = [game_df['home_team'],game_df['away_team']]
 
+   # graphic_filter = ((game_df['home_wp'].isna()==False) & 
+    #              (game_df['away_wp'].isna()==False) & 
+     #             (game_df['home_team'].isin(teams)) &
+      #            (game_df['away_team'].isin(teams))
+       #          )
+
+    cols_graphic = ['home_wp','away_wp','game_seconds_remaining']
+
+    #game_df[graphic_filter].shape
+
+     
+    colors = []
+    for team in teams:
+      colors.append(teamcolors[teamcolors["team"]==team]['color4'].tolist()[0])
+
+    #game_ids = pbp[graphic_filter]['game_id'].unique().tolist()
+    #game_id = game_ids[1]
+
+    #print(pbp[graphic_filter & (pbp['game_id']==game_id)][cols_graphic].shape)
+    graph_data = game_df[cols_graphic].set_index("game_seconds_remaining").sort_index(ascending=True)
+                #.rename(columns={"home_wp",
+                #                "away_wp":"HOU"})
+
+    #display(graph_data.head())
+    plt.figure()
+    graph_data.plot(color=colors)
+    plt.xlabel("Time Remaining (seconds)")
+    plt.ylabel("Win Probability")
+    plt.title(f"Win Probability Chart\n{teams[0]} vs {teams[1]}")
+    plt.gca().invert_xaxis()
+    plt.figure()
   
   team_decisions(df)
   #plt.show()
