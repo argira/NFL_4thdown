@@ -200,7 +200,7 @@ def app():
                 #                "away_wp":"HOU"})
 
     plt.figure()
-    sns.lineplot(data=graph_data, palette="tab10", linewidth=2.5)
+    sns.lineplot(data=graph_data, palette=colors, linewidth=2.5)
     #sns.catplot(data=data,x='play_type', y='ydstogo',kind='box', palette='plasma')
     plt.xticks(rotation=45)
     plt.xlabel("Time Remaining (seconds)")
