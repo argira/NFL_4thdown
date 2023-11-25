@@ -62,7 +62,7 @@ def app():
           #st.write("Team "+team+" decisions", display_df.sort_index())
          
           data = data[data["game_list"]==game]
-          game_id = data['game_id']
+          game_id = data['game_id'].unique()
           against_team = list(data['away_team'].unique()) 
           data = data[data['posteam']==team]
 
