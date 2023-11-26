@@ -165,9 +165,9 @@ def app():
     graph_data = game_df[cols_graphic].set_index("game_seconds_remaining").sort_index(ascending=False).rename(columns={"home_wp":game_teams[0],
                                 "away_wp":game_teams[1]})
 
-    tab1, tab2 = st.tabs(["Tab 1", "Tab2"])
-    tab1.write("this is tab 1")
-    tab2.write("this is tab 2")
+    tab1, tab2 = st.tabs(["Field Position", "Win Probability chart"])
+    
+    
 
     with tab1:
       plt.figure()
@@ -207,6 +207,7 @@ def app():
       sns.lineplot(data=graph_data, palette=colors, linewidth=1.5)
     #sns.catplot(data=data,x='play_type', y='ydstogo',kind='box', palette='plasma')
       plt.xticks(rotation=45)
+      plt.xlim(3600,0)
       plt.xlabel("Time Remaining (seconds)")
       plt.ylabel("Win Probability")
       plt.title(f"Win Probability Chart\n{game_teams[0]} vs {game_teams[1]}")
