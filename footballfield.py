@@ -36,37 +36,37 @@ def create_football_field(linenumbers=True,
               53.3, 0, 0, 53.3, 53.3, 0, 0, 53.3, 53.3, 53.3, 0, 0, 53.3],
              color='white')
             if fifty_is_los:
-              plt.plot([60, 60], [0, 53.3], color='gold')
-              plt.text(62, 50, '<- Player Yardline at Snap', color='gold')
+                plt.plot([60, 60], [0, 53.3], color='gold')
+                plt.text(62, 50, '<- Player Yardline at Snap', color='gold')
                 # Endzones
             if endzones:
-              ez1 = patches.Rectangle((0, 0), 10, 53.3,
+                ez1 = patches.Rectangle((0, 0), 10, 53.3,
                                 linewidth=0.1,
                                 edgecolor='r',
                                 facecolor='blue',
                                 alpha=0.2,
                                 zorder=0)
-              ez2 = patches.Rectangle((110, 0), 120, 53.3,
+                ez2 = patches.Rectangle((110, 0), 120, 53.3,
                                 linewidth=0.1,
                                 edgecolor='r',
                                 facecolor='blue',
                                 alpha=0.2,
                                 zorder=0)
-              ax.add_patch(ez1)
-              ax.add_patch(ez2)
-              plt.xlim(0, 120)
-              plt.ylim(-5, 58.3)
-              plt.axis('off')
+                ax.add_patch(ez1)
+                ax.add_patch(ez2)
+            plt.xlim(0, 120)
+            plt.ylim(-5, 58.3)
+            plt.axis('off')
             if linenumbers:
-              for x in range(20, 110, 10):
-                numb = x
-              if x > 50:
-                numb = 120 - x
-                plt.text(x, 5, str(numb - 10),
+                for x in range(20, 110, 10):
+                  numb = x
+                  if x > 50:
+                     numb = 120 - x
+                  plt.text(x, 5, str(numb - 10),
                      horizontalalignment='center',
                      fontsize=20,  # fontname='Arial',
                      color='white')
-                plt.text(x - 0.95, 53.3 - 5, str(numb - 10),
+                  plt.text(x - 0.95, 53.3 - 5, str(numb - 10),
                      horizontalalignment='center',
                      fontsize=20,  # fontname='Arial',
                      color='white', rotation=180)
@@ -75,7 +75,7 @@ def create_football_field(linenumbers=True,
             else:
               hash_range = range(1, 120)
 
-              for x in hash_range:
+            for x in hash_range:
                 ax.plot([x, x], [0.4, 0.7], color='white')
                 ax.plot([x, x], [53.0, 52.5], color='white')
                 ax.plot([x, x], [22.91, 23.57], color='white')
