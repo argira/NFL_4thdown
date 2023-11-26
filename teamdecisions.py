@@ -154,37 +154,6 @@ def app():
     team2 = list(plot_df['away_team'].unique())
     game_teams = [team1[0],team2[0]]
 
-    plt.figure()
-
-    yl=yard_line.astype(int)
-    yt=ydstogo.astype(int)
-    fig, ax = create_football_field(highlight_line=True,
-                                highlight_line_number=yl, yards_to_go=yt)
-
-    plt.xlim(0, 120)
-    plt.ylim(0, 53.5)
-    plt.vlines(x=yl+yt,
-           ymin=-5,
-           ymax=58.3,
-           colors=["yellow","yellow"],
-           linestyles="dashed",
-           linewidth=2)#"dashed"
-
-    plt.text(5, 25, game_teams[0],
-         size="x-large", 
-         rotation=90,
-         color="white")
-
-    plt.text(112, 25, game_teams[1],
-         size="x-large", 
-         rotation=270,
-         color="white")
-    
-    st.pyplot(plt)
-    plt.figure() 
-
-  
-
     cols_graphic = ['home_wp','away_wp','game_seconds_remaining']
 
 
@@ -196,15 +165,53 @@ def app():
     graph_data = game_df[cols_graphic].set_index("game_seconds_remaining").sort_index(ascending=True).rename(columns={"home_wp":game_teams[0],
                                 "away_wp":game_teams[1]})
 
-    plt.figure()
-    sns.lineplot(data=graph_data, palette=colors, linewidth=1.5)
+    tab1, tab2 = st.tabs(["Tab 1", "Tab2"])
+    tab1.write("this is tab 1")
+    tab2.write("this is tab 2")
+
+    with tab1:
+      plt.figure()
+
+      yl=yard_line.astype(int)
+      yt=ydstogo.astype(int)
+      fig, ax = create_football_field(highlight_line=True,
+                                highlight_line_number=yl, yards_to_go=yt)
+
+      plt.xlim(0, 120)
+      plt.ylim(0, 53.5)
+      plt.vlines(x=yl+yt,
+           ymin=-5,
+           ymax=58.3,
+           colors=["yellow","yellow"],
+           linestyles="dashed",
+           linewidth=2)#"dashed"
+
+      plt.text(5, 25, game_teams[0],
+         size="x-large", 
+         rotation=90,
+         color="white")
+
+      plt.text(112, 25, game_teams[1],
+         size="x-large", 
+         rotation=270,
+         color="white")
+    
+      st.pyplot(plt)
+      plt.figure() 
+
+  
+
+    with tab2:
+
+      plt.figure()
+      sns.lineplot(data=graph_data, palette=colors, linewidth=1.5)
     #sns.catplot(data=data,x='play_type', y='ydstogo',kind='box', palette='plasma')
-    plt.xticks(rotation=45)
-    plt.xlabel("Time Remaining (seconds)")
-    plt.ylabel("Win Probability")
-    plt.title(f"Win Probability Chart\n{game_teams[0]} vs {game_teams[1]}")
-    st.pyplot(plt)
-    plt.figure()
+      plt.xticks(rotation=45)
+      plt.xlabel("Time Remaining (seconds)")
+      plt.ylabel("Win Probability")
+      plt.title(f"Win Probability Chart\n{game_teams[0]} vs {game_teams[1]}")
+      st.pyplot(plt)
+      plt.figure()
 
     #display(graph_data.head())
     #graph_data.plot(color=colors)
