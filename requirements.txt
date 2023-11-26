@@ -4,7 +4,7 @@ altair
 spicy
 helpers
 streamlit
-streamlit-d3graph
+streamlit_d3graph
 altair
 pandas
 matplotlib
