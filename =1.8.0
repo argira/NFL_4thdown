@@ -1,0 +1,2 @@
+Requirement already satisfied: scipy in /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages (1.7.3)
+Requirement already satisfied: numpy<1.23.0,>=1.16.5 in /Library/Frameworks/Python.framework/Versions/3.7/lib/python3.7/site-packages (from scipy) (1.21.6)
