@@ -162,7 +162,7 @@ def app():
     for t in game_teams:
       colors.append(teamcolors[teamcolors["team"]==t]['color'].tolist()[0])
 
-    graph_data = game_df[cols_graphic].set_index("game_seconds_remaining").sort_index(ascending=True).rename(columns={"home_wp":game_teams[0],
+    graph_data = game_df[cols_graphic].set_index("game_seconds_remaining").sort_index(ascending=False).rename(columns={"home_wp":game_teams[0],
                                 "away_wp":game_teams[1]})
 
     tab1, tab2 = st.tabs(["Tab 1", "Tab2"])
