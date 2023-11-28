@@ -168,7 +168,7 @@ def app():
     graph_data['minutes_remaining'] = (graph_data['game_seconds_remaining']/60).astype(int)
     graph_data = graph_data.drop(columns=['game_seconds_remaining'])
     
-    graph_data = graph_data[graph_data['minutes_remaining']>=30]
+    graph_data = graph_data[graph_data['minutes_remaining']>=decision_time[0]]
     graph_data = graph_data.set_index("minutes_remaining").sort_index(ascending=False).rename(columns={"home_wp":game_teams[0],
                                 "away_wp":game_teams[1]})
 
