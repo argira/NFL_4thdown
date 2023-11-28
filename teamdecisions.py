@@ -168,12 +168,12 @@ def app():
     
 
     graph_data = game_df[cols_graphic]
-    graph_data['minutes_remaining'] = (graph_data['game_seconds_remaining']/60).astype(int)
-    graph_data = graph_data.drop(columns=['game_seconds_remaining'])
+    #graph_data['minutes_remaining'] = (graph_data['game_seconds_remaining']/60).astype(int)
+    #graph_data = graph_data.drop(columns=['game_seconds_remaining'])
     
     graph_data = graph_data[graph_data['minutes_remaining']>=decision_time[0]]
-    graph_data = graph_data.set_index("minutes_remaining").sort_index(ascending=False).rename(columns={"home_wp":game_teams[0],
-                                "away_wp":game_teams[1]})
+    graph_data = graph_data.set_index("minutes_remaining").sort_index(ascending=False).rename(columns={"home_team_pred_proba_plus":game_teams[0],
+                                "away_team_pred_proba_plus":game_teams[1]})
 
 
     tab1, tab2, tab3 = st.columns(3)#["Field Position", "Win Probability chart", 'Decision Options'])
@@ -215,7 +215,7 @@ def app():
     with tab2:
 
       plt.figure()
-      ax=sns.lineplot(data=graph_data, palette=colors, linewidth=1.5)
+      sns.lineplot(data=graph_data, palette=colors, linewidth=1.5)
     #sns.catplot(data=data,x='play_type', y='ydstogo',kind='box', palette='plasma')
       #ax.axvline(decision_time, color="darkred", linestyle="-", label="Valentine's Day")
       plt.xticks(rotation=45)

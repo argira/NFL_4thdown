@@ -44,6 +44,6 @@ def team_logos():
     return team_logos
 
 def all_data():
-   all_data = pd.read_csv("data/all_data.csv")
+   all_data = pd.read_csv("data/prediction_df.csv")
    return all_data
 
