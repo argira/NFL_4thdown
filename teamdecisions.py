@@ -96,7 +96,7 @@ def app():
       with logB:
         pt_score = plot_df['posteam_score'].astype(int).astype(str)
         st.subheader('Score')
-        score_pos = '<p style="font-family:sans-serif; color:Yellow; font-size: 58px;">'+ ''.join(pt_score)+' </p>'
+        score_pos = '<p style="font-family:sans-serif; color:Blue; font-size: 58px;">'+ ''.join(pt_score)+' </p>'
         st.markdown(score_pos, unsafe_allow_html=True)
        
     with colB:
@@ -162,9 +162,12 @@ def app():
     colors = []
     for t in game_teams:
       colors.append(teamcolors[teamcolors["team"]==t]['color'].tolist()[0])
+    
 
     graph_data = game_df[cols_graphic].set_index("game_seconds_remaining").sort_index(ascending=False).rename(columns={"home_wp":game_teams[0],
                                 "away_wp":game_teams[1]})
+    graph_data['minutes_remaining'] = (graph_data['game_seconds_remaining']/60).astype(int)
+    graph_data = graph_data[graph_data['minutes_remaining']<=decision_time]
 
     tab1, tab2 = st.tabs(["Field Position", "Win Probability chart"])
     
@@ -207,9 +210,9 @@ def app():
       plt.figure()
       ax=sns.lineplot(data=graph_data, palette=colors, linewidth=1.5)
     #sns.catplot(data=data,x='play_type', y='ydstogo',kind='box', palette='plasma')
-      ax.axvline(decision_time, color="darkred", linestyle="-", label="Valentine's Day")
+      #ax.axvline(decision_time, color="darkred", linestyle="-", label="Valentine's Day")
       plt.xticks(rotation=45)
-      plt.xlim(3600,0)
+      plt.xlim(60,0)
       plt.xlabel("Time Remaining (seconds)")
       plt.ylabel("Win Probability")
       plt.title(f"Win Probability Chart\n{game_teams[0]} vs {game_teams[1]}")
