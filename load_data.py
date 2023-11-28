@@ -24,7 +24,7 @@ def data_prep():
   df10 = pd.read_csv("data/final_data_2018.csv")
   df11 = pd.read_csv("data/final_data_2019.csv")
 
-  df = pd.concat[df1,df2,df3,df4,df5,df6,df7,df8,df9,df10,df11]
+  df = pd.concat([df1,df2,df3,df4,df5,df6,df7,df8,df9,df10,df11])
   return df
 #@st.cache_data
 #def data_prep_new():
