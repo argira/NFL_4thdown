@@ -85,6 +85,7 @@ def app():
          
     plot_df = data[data['Decision']==decision]
     decision_time = list((plot_df['game_seconds_remaining']/60).astype(int))
+    decision_play = list(plot_df['play_id'])
     #plot_df = plot_df[scoreboard_columns]
 
     colA,colB,colC = st.columns(3)
@@ -157,7 +158,7 @@ def app():
     team2 = list(plot_df['away_team'].unique())
     game_teams = [team1[0],team2[0]]
 
-    cols_graphic = ['home_wp','away_wp','game_seconds_remaining']
+    cols_graphic = ['home_team_pred_proba_plus','away_team_pred_proba_plus','minues_remaining']
 
 
      
@@ -225,12 +226,18 @@ def app():
       st.pyplot(plt)
       plt.figure()
 
-    #display(graph_data.head())
-    #graph_data.plot(color=colors)
-    #plt.xlabel("Time Remaining (seconds)")
-    #plt.ylabel("Win Probability")
-    #plt.title(f"Win Probability Chart\n{teams[0]} vs {teams[1]}")
-    #plt.gca().invert_xaxis()
+    with tab3:
+      play_columns = ['posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta']
+      column_graph = plot_df[play_columns]
+      column_graph = column_graph.rename(columns={"posteam_fg_made_wp_delta":'Field Goal Achieved',
+                                "posteam_fg_missed_wp_delta":'Field Goal Missed', 'posteam_punt_wp_delta':'Punt'})
+
+      plt.figure()
+      sns.barplot(data=column_graph, palette=colors)
+      plt.xlabel("Win Probability by play type selection")
+      plt.ylabel("Probability")
+      st.pyplot(plt)
+      plt.figure()
     
   
   team_decisions(df)
