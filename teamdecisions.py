@@ -74,14 +74,14 @@ def app():
           #with col1:
             #st.image('images/'+team+'.png')
          
-    data['Decision'] = 'Quarter: ' + data['qtr'].astype(str) + ', Seconds remaining: ' + data['game_seconds_remaining'].astype(str) + 'Yards to go: '+ data['ydstogo'].astype(str)
-    decisions = list(data['Decision'].unique()) 
+          data['Decision'] = 'Quarter: ' + data['qtr'].astype(str) + ', Seconds remaining: ' + data['game_seconds_remaining'].astype(str) + 'Yards to go: '+ data['ydstogo'].astype(str)
+          decisions = list(data['Decision'].unique()) 
 
          # with col2:
 
           #  st.image('images/'+' '.join(against_team) +'.png') 
           #st.markdown("Show the Scoreboard")
-    decision = st.selectbox( "Choose 4th down play",(decisions))
+          decision = st.selectbox( "Choose 4th down play",(decisions))
          
     plot_df = data[data['Decision']==decision]
     decision_time = list((plot_df['game_seconds_remaining']/60).astype(int))
@@ -176,7 +176,7 @@ def app():
                                 "away_wp":game_teams[1]})
 
 
-    tab1, tab2, tab3 = st.tabs(["Field Position", "Win Probability chart", 'Decision Options'])
+    tab1, tab2, tab3 = st.columns(3)#["Field Position", "Win Probability chart", 'Decision Options'])
     
     
 
@@ -228,7 +228,9 @@ def app():
 
     with tab3:
       play_columns = ['posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta']
-      column_graph = plot_df[play_columns]
+      column_graph = plot_df[plot_df['play_id']==decision_play[0]]
+      column_graph = column_graph[play_columns]
+
       column_graph = column_graph.rename(columns={"posteam_fg_made_wp_delta":'FG Made',
                                 "posteam_fg_missed_wp_delta":'FG Missed', 'posteam_punt_wp_delta':'Punt'})
 
@@ -236,7 +238,7 @@ def app():
       sns.barplot(data=column_graph, palette=colors)
       plt.xlabel("Play type")
       plt.ylabel("Probability")
-      plt.title("Change in Win Probability")
+      plt.title("Change in Win Probability by play decision")
       st.pyplot(plt)
       plt.figure()
     
