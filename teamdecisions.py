@@ -74,7 +74,7 @@ def app():
           #with col1:
             #st.image('images/'+team+'.png')
          
-    data['Decision'] = 'Quarter ' + data['qtr'].astype(str) + ' Seconds remaining ' + data['game_seconds_remaining'].astype(str) + '  and ' + data['ydstogo'].astype(str) + ' yards to go'
+    data['Decision'] = 'Quarter: ' + data['qtr'].astype(str) + ', Seconds remaining: ' + data['game_seconds_remaining'].astype(str) + 'Yards to go: '+ data['ydstogo'].astype(str)
     decisions = list(data['Decision'].unique()) 
 
          # with col2:
@@ -229,13 +229,14 @@ def app():
     with tab3:
       play_columns = ['posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta']
       column_graph = plot_df[play_columns]
-      column_graph = column_graph.rename(columns={"posteam_fg_made_wp_delta":'Field Goal Achieved',
-                                "posteam_fg_missed_wp_delta":'Field Goal Missed', 'posteam_punt_wp_delta':'Punt'})
+      column_graph = column_graph.rename(columns={"posteam_fg_made_wp_delta":'FG Made',
+                                "posteam_fg_missed_wp_delta":'FG Missed', 'posteam_punt_wp_delta':'Punt'})
 
       plt.figure()
       sns.barplot(data=column_graph, palette=colors)
-      plt.xlabel("Win Probability by play type selection")
+      plt.xlabel("Play type")
       plt.ylabel("Probability")
+      plt.title("Change in Win Probability")
       st.pyplot(plt)
       plt.figure()
     
