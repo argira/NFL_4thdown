@@ -93,6 +93,7 @@ def app():
       logA, logB = st.columns(2)
       with logA:
         st.image('images/'+team+'.png')
+        st.markdown("Team in posesion of ball")
       with logB:
         pt_score = plot_df['posteam_score'].astype(int).astype(str)
         st.subheader('Score')
@@ -117,6 +118,7 @@ def app():
         ydstogo = plot_df['ydstogo'].astype(str)
         quarter_info =  '<p style="font-family:sans-serif; color:blue; font-size: 30px;alignment:center;">'+ ''.join(ydstogo)+' </p>'
         st.markdown(quarter_info, unsafe_allow_html=True)
+      
 
 
 
