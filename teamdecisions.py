@@ -173,7 +173,7 @@ def app():
                                 "away_wp":game_teams[1]})
 
 
-    tab1, tab2 = st.tabs(["Field Position", "Win Probability chart"])
+    tab1, tab2, tab3 = st.tabs(["Field Position", "Win Probability chart", 'Decision Options'])
     
     
 
