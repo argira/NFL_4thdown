@@ -84,7 +84,7 @@ def app():
     decision = st.selectbox( "Choose 4th down play",(decisions))
          
     plot_df = data[data['Decision']==decision]
-    decision_time = list(plot_df['game_seconds_remaining'].astype(int))
+    decision_time = list((plot_df['game_seconds_remaining']/60).astype(int))
     #plot_df = plot_df[scoreboard_columns]
 
     colA,colB,colC = st.columns(3)
@@ -217,7 +217,7 @@ def app():
       #ax.axvline(decision_time, color="darkred", linestyle="-", label="Valentine's Day")
       plt.xticks(rotation=45)
       plt.xlim(60,0)
-      plt.xlabel("Time Remaining (seconds)")
+      plt.xlabel("Time Remaining (minutes)")
       plt.ylabel("Win Probability")
       plt.title(f"Win Probability Chart\n{game_teams[0]} vs {game_teams[1]}")
       st.pyplot(plt)
