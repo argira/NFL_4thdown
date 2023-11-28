@@ -132,7 +132,7 @@ def app():
       with away2:
         dt_score = plot_df['defteam_score'].astype(int).astype(str)
         st.subheader('Score')
-        score_def = '<p style="font-family:sans-serif; color:Yellow; font-size: 58px;">'+ ''.join(dt_score)+' </p>'
+        score_def = '<p style="font-family:sans-serif; color:Blue; font-size: 58px;">'+ ''.join(dt_score)+' </p>'
         st.markdown(score_def, unsafe_allow_html=True)
         
 
@@ -167,7 +167,7 @@ def app():
     graph_data = game_df[cols_graphic]
     graph_data['minutes_remaining'] = (graph_data['game_seconds_remaining']/60).astype(int)
     
-    graph_data = graph_data[graph_data['minutes_remaining']<=decision_time]
+    graph_data = graph_data[graph_data['minutes_remaining']<=decision_time[0]]
     graph_data = graph_data.set_index("minutes_remaining").sort_index(ascending=False).rename(columns={"home_wp":game_teams[0],
                                 "away_wp":game_teams[1]})
 
