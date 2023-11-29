@@ -158,7 +158,7 @@ def app():
     team2 = list(plot_df['away_team'].unique())
     game_teams = [team1[0],team2[0]]
 
-    cols_graphic = ['home_team_pred_proba_plus','away_team_pred_proba_plus','minues_remaining']
+    cols_graphic = ['home_team_pred_proba_plus','away_team_pred_proba_plus','game_seconds_remaining']
 
 
      
@@ -168,8 +168,8 @@ def app():
     
 
     graph_data = game_df[cols_graphic]
-    #graph_data['minutes_remaining'] = (graph_data['game_seconds_remaining']/60).astype(int)
-    #graph_data = graph_data.drop(columns=['game_seconds_remaining'])
+    graph_data['minutes_remaining'] = (graph_data['game_seconds_remaining']/60).astype(int)
+    graph_data = graph_data.drop(columns=['game_seconds_remaining'])
     
     graph_data = graph_data[graph_data['minutes_remaining']>=decision_time[0]]
     graph_data = graph_data.set_index("minutes_remaining").sort_index(ascending=False).rename(columns={"home_team_pred_proba_plus":game_teams[0],
