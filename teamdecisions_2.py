@@ -230,7 +230,7 @@ def app():
     with tab3:
       play_columns = ['posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta']
       column_graph = plot_df[plot_df['play_id']==decision_play[0]]
-      column_graph = column_graph[play_columns]
+      column_graph = column_graph[play_columns].T
 
       column_graph = column_graph.rename(columns={"posteam_fg_made_wp_delta":'FG Made',
                                 "posteam_fg_missed_wp_delta":'FG Missed', 'posteam_punt_wp_delta':'Punt'})
