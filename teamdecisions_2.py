@@ -229,16 +229,21 @@ def app():
       #plt.figure()
 
     with tab3:
-      play_columns = ['posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta']
+      play_columns = ['posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta']
       column_graph = plot_df[plot_df['play_id']==decision_play[0]]
       column_graph = column_graph[play_columns]
-      column_graph = column_graph.rename(columns={"posteam_fg_made_wp_delta":'FG Made',
-                                "posteam_fg_missed_wp_delta":'FG Missed', 'posteam_punt_wp_delta':'Punt'})
-      column_graph = column_graph.T
+      graph_df = []
+      graph_df['Punt']=column_graph['posteam_punt_wp_delta']
+      graph_df['Field Goal']=column_graph['posteam_fg_made_wp_delta']+column_graph['posteam_fg_missed_wp_delta']
+      graph_df['Run']=column_graph['posteam_run_failed_wp_delta'] + column_graph['posteam_run_convert_wp_delta']
+      graph_df['Pass']=column_graph['posteam_pass_failed_wp_delta'] + column_graph['posteam_pass_convert_wp_delta']
+      #column_graph = column_graph.rename(columns={"posteam_fg_made_wp_delta":'FG Made',
+       #                         "posteam_fg_missed_wp_delta":'FG Missed', 'posteam_punt_wp_delta':'Punt'})
+      graph_df = graph_df.T
 
       
       st.markdown("Change in Win Probability by play decision")
-      st.bar_chart(data=column_graph,color=colors[0] ,use_container_width = True)
+      st.bar_chart(data=graph_df,color=colors[0] ,use_container_width = True)
       #plt.figure()
       #sns.barplot(data=column_graph, palette=colors)
       #plt.xlabel("Play type")
