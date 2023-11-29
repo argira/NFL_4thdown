@@ -94,7 +94,7 @@ def app():
       logA, logB = st.columns(2)
       with logA:
         st.image('images/'+team+'.png')
-        st.markdown("Team in posesion of ball")
+       # st.markdown("Team in posesion of ball")
       with logB:
         pt_score = plot_df['posteam_score'].astype(int).astype(str)
         st.subheader('Score')
@@ -181,6 +181,7 @@ def app():
     
 
     with tab1:
+      st.markdown("Field Possition "+team1)
       plt.figure()
 
       yl=yard_line.astype(int)
@@ -237,7 +238,7 @@ def app():
 
       
       st.markdown("Change in Win Probability by play decision")
-      st.bar_chart(data=column_graph, use_container_width = True)
+      st.bar_chart(data=column_graph,color=colors[0] ,use_container_width = True)
       #plt.figure()
       #sns.barplot(data=column_graph, palette=colors)
       #plt.xlabel("Play type")
