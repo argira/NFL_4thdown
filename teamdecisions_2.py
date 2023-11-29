@@ -172,7 +172,7 @@ def app():
     graph_data = graph_data.drop(columns=['game_seconds_remaining'])
     
     graph_data = graph_data[graph_data['minutes_remaining']>=decision_time[0]]
-    graph_data = graph_data.set_index("minutes_remaining").sort_index(ascending=False).rename(columns={"home_team_pred_proba_plus":game_teams[0],
+    graph_data = graph_data.set_index("minutes_remaining").sort_index(ascending=True).rename(columns={"home_team_pred_proba_plus":game_teams[0],
                                 "away_team_pred_proba_plus":game_teams[1]})
 
 
@@ -181,7 +181,7 @@ def app():
     
 
     with tab1:
-      st.markdown("Field Possition "+team1[0])
+      st.markdown("Field Possition of team "+team1[0])
       plt.figure()
 
       yl=yard_line.astype(int)

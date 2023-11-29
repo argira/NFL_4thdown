@@ -26,7 +26,7 @@ def app():
 
 
   def team_decisions(df):
-    cola, colb = st.columns([3,10])
+    cola, colb = st.columns(2)
     with cola:
       teams = list(df["home_team"].unique())
       teams.sort()
@@ -74,7 +74,7 @@ def app():
           #with col1:
             #st.image('images/'+team+'.png')
          
-          data['Decision'] = 'Quarter: ' + data['qtr'].astype(str) + ', Seconds remaining: ' + data['game_seconds_remaining'].astype(str) + 'Yards to go: '+ data['ydstogo'].astype(str)
+          data['Decision'] = 'Quarter: ' + data['qtr'].astype(str) + ', Seconds remaining:  ' + data['game_seconds_remaining'].astype(str) + ' Yards to go: '+ data['ydstogo'].astype(str)
           decisions = list(data['Decision'].unique()) 
 
          # with col2:
@@ -94,7 +94,7 @@ def app():
       logA, logB = st.columns(2)
       with logA:
         st.image('images/'+team+'.png')
-        st.markdown("Team in posesion of ball")
+        #st.markdown("Team in posesion of ball")
       with logB:
         pt_score = plot_df['posteam_score'].astype(int).astype(str)
         st.subheader('Score')
@@ -181,6 +181,7 @@ def app():
     
 
     with tab1:
+      st.markdown("Field Possition of team "+team1[0])
       plt.figure()
 
       yl=yard_line.astype(int)
