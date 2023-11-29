@@ -181,7 +181,7 @@ def app():
     
 
     with tab1:
-      st.markdown("Field Possition "+team1)
+      st.markdown("Field Possition "+team1[0].atype(str))
       plt.figure()
 
       yl=yard_line.astype(int)
