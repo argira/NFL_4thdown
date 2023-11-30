@@ -219,7 +219,6 @@ def app():
       sns.lineplot(data=graph_data, palette=colors, linewidth=1.5)
       #sns.catplot(data=data,x='play_type', y='ydstogo',kind='box', palette='plasma')
       #ax.axvline(decision_time, color="darkred", linestyle="-", label="Valentine's Day")
-      
       plt.xticks(rotation=45)
       plt.xlim(60,0)
       plt.xlabel("Time Remaining (minutes)")
