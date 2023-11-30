@@ -164,7 +164,7 @@ def app():
      
     colors = []
     for t in game_teams:
-      colors.append(teamcolors[teamcolors["team"]==t]['color3'].tolist()[0])
+      colors.append(teamcolors[teamcolors["team"]==t]['color1'].tolist()[0])
     
 
     graph_data = game_df[cols_graphic]
