@@ -26,7 +26,7 @@ def app():
 
 
   def team_decisions(df):
-    cola, colb = st.columns([3,10])
+    cola, colb = st.columns(2)
     with cola:
       teams = list(df["home_team"].unique())
       teams.sort()
