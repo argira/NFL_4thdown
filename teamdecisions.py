@@ -242,7 +242,7 @@ def app():
       sns.barplot(data=graph_df, color=colors[0])
       plt.xlabel("Play type")
       plt.ylabel("Probability")
-      plt.title("Change in Win Probability by play decision")
+      plt.title(f"Change in Win Probability by play type for team \n{game_teams[0]}")
       st.pyplot(plt)
       plt.figure()
     
