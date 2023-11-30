@@ -184,7 +184,7 @@ def app():
       st.markdown("Field Possition of team "+team1[0])
       plt.figure()
 
-      yl=yard_line.astype(int)
+      yl=100-yard_line.astype(int)
       yt=ydstogo.astype(int)
       fig, ax = create_football_field(highlight_line=True,
                                 highlight_line_number=yl, yards_to_go=yt)
