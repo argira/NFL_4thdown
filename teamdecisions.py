@@ -181,7 +181,7 @@ def app():
     
 
     with tab1:
-      st.header("Field Position of team "+team1[0])
+      st.write("Field Position of team "+team1[0])
       plt.figure()
 
       yl=100-yard_line.astype(int)
