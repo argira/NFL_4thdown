@@ -83,7 +83,7 @@ def create_football_field(linenumbers=True,
 
             if highlight_line:
               hl = highlight_line_number+10
-              plt.plot([hl, hl], [0, 53.3], color='yellow')
+              plt.plot([hl, hl], [0, 53.3], color='black')
               # plt.text(hl + 2, 50, '<- {}'.format(highlighted_name),
               #          color='yellow')
             return fig, ax
