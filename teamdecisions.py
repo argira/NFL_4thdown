@@ -221,6 +221,7 @@ def app():
       #ax.axvline(decision_time, color="darkred", linestyle="-", label="Valentine's Day")
       plt.xticks(rotation=45)
       plt.xlim(60,0)
+      plt.ylim(0,1)
       plt.xlabel("Time Remaining (minutes)")
       plt.ylabel("Win Probability")
       plt.title(f"Win Probability Chart\n{game_teams[0]} vs {game_teams[1]}")
