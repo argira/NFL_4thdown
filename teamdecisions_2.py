@@ -231,7 +231,7 @@ def app():
       #plt.figure()
 
     with tab3:
-      play_columns = ['posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta']
+      play_columns = ['play_id','posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta']
       column_graph = plot_df[plot_df['play_id']==decision_play[0]]
       column_graph = column_graph[play_columns]
       column_graph['Punt']=column_graph['posteam_punt_wp_delta']
