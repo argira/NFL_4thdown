@@ -245,7 +245,7 @@ def app():
 
       
       st.markdown("Change in Win Probability by play decision")
-      st.bar_chart(data=graph_df,colors=c ,use_container_width = True)
+      st.bar_chart(data=graph_df,color=c ,use_container_width = True)
       #plt.figure()
       #sns.barplot(data=column_graph, palette=colors)
       #plt.xlabel("Play type")
