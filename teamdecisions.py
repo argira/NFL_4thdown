@@ -237,11 +237,16 @@ def app():
       column_graph['Pass']=column_graph['posteam_pass_failed_wp_delta'] + column_graph['posteam_pass_convert_wp_delta']
       column_graph = column_graph.drop(columns=['posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta'])
       graph_df = column_graph
+      
+      
+      
+
+
    
       plt.figure()
-      sns.barplot(data=graph_df, color=colors[0])
-      plt.xlabel("Play type")
-      plt.ylabel("Probability")
+      ax=sns.barplot(data=graph_df, color=colors[0])
+      #plt.xlabel("Play type")
+      #plt.ylabel("Probability")
       plt.title(f"Change in Win Probability by play type for team \n{game_teams[0]}")
       st.pyplot(plt)
       plt.figure()
