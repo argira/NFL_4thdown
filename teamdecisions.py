@@ -164,7 +164,7 @@ def app():
      
     colors = []
     for t in game_teams:
-      colors.append(teamcolors[teamcolors["team"]==t]['color'].tolist()[0])
+      colors.append(teamcolors[teamcolors["team"]==t]['color4'].tolist()[0])
     
 
     graph_data = game_df[cols_graphic]
@@ -239,7 +239,7 @@ def app():
       graph_df = column_graph
    
       plt.figure()
-      sns.barplot(data=graph_df, palette=colors)
+      sns.barplot(data=graph_df, color=colors[0])
       plt.xlabel("Play type")
       plt.ylabel("Probability")
       plt.title("Change in Win Probability by play decision")
