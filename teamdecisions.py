@@ -228,7 +228,7 @@ def app():
       plt.figure()
 
     with tab3:
-      play_columns = ['posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta']
+      play_columns = ['play_id','posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta']
       column_graph = plot_df[plot_df['play_id']==decision_play[0]]
       column_graph = column_graph[play_columns]
       column_graph['Punt']=column_graph['posteam_punt_wp_delta']
@@ -236,15 +236,11 @@ def app():
       column_graph['Run']=column_graph['posteam_run_failed_wp_delta'] + column_graph['posteam_run_convert_wp_delta']
       column_graph['Pass']=column_graph['posteam_pass_failed_wp_delta'] + column_graph['posteam_pass_convert_wp_delta']
       column_graph = column_graph.drop(columns=['posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta'])
-      graph_df = column_graph
-      
-      
-      
+      graph_df = column_graph.melt(id_vars='play_id', var_name='Play',value_vars=['Punt','Field Goal','Run','Pass'], value_name='Probability')
 
-
-   
+      c = [colors[1] if (x < max(graph_df.Probability)) else colors[0] for x in graph_df.Probability]
       plt.figure()
-      ax=sns.barplot(data=graph_df, color=colors[0])
+      ax=sns.barplot(data=graph_df, x=graph_df.Play, y=graph_df.Probability ,palette=c)
       plt.xlabel("Play type")
       plt.ylabel("Probability")
       plt.title(f"Change in Win Probability by play type for team \n{game_teams[0]}")
