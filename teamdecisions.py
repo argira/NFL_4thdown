@@ -164,7 +164,7 @@ def app():
      
     colors = []
     for t in game_teams:
-      colors.append(teamcolors[teamcolors["team"]==t]['color4'].tolist()[0])
+      colors.append(teamcolors[teamcolors["team"]==t]['color3'].tolist()[0])
     
 
     graph_data = game_df[cols_graphic]
@@ -216,7 +216,7 @@ def app():
     with tab2:
 
       plt.figure()
-      sns.lineplot(data=graph_data, palette=colors, linewidth=1.5)
+      sns.lineplot(data=graph_data, palette=colors, linewidth=1.5, errorbar=None)
       #sns.catplot(data=data,x='play_type', y='ydstogo',kind='box', palette='plasma')
       #ax.axvline(decision_time, color="darkred", linestyle="-", label="Valentine's Day")
       plt.xticks(rotation=45)
