@@ -170,9 +170,7 @@ def app():
     graph_data = game_df[cols_graphic]
     graph_data['minutes_remaining'] = (graph_data['game_seconds_remaining']/60).astype(int)
     graph_data = graph_data.drop(columns=['game_seconds_remaining'])
-    decision_t = st.slider(
-    "Minutes ermaining:",
-    value=(0,60))
+    decision_t = st.slider( "Minutes ermaining:",0,60,30)
 
     graph_data = graph_data[graph_data['minutes_remaining']>=decision_t]
     graph_data = graph_data.set_index("minutes_remaining").sort_index(ascending=True).rename(columns={"home_team_pred_proba_plus":game_teams[0],
