@@ -10,11 +10,12 @@ from footballfield import create_football_field
 from load_data import team_colors
 from load_data import all_data
 from scipy import stats
+import numpy as np
 #from helpers import pearsonr_ci
 
 
 def app():
-  st.header("Win Probability based on 4th down decision")
+  st.header("Win Probability and 4th Down Play Decision")
   df = data_prep() #fourthdown data
   #logos = team_logos()
   teamcolors = team_colors() #team colors
@@ -56,9 +57,9 @@ def app():
 
         #get key by combining columns
         
-          data['game_list'] ='Game Date ' + data['game_date'].astype(str) +" Against "+ data['away_team']
+          data['game_list'] ='Game Date: ' + data['game_date'].astype(str) +" vs "+ data['away_team']
           game_list = list(data['game_list'].unique())
-          game = st.selectbox("choose a game",(game_list))
+          game = st.selectbox("Choose a Game",(game_list))
           #st.write("Team "+team+" decisions", display_df.sort_index())
          
           data = data[data["game_list"]==game]
@@ -74,16 +75,18 @@ def app():
           #with col1:
             #st.image('images/'+team+'.png')
          
-          data['Decision'] = 'Quarter: ' + data['qtr'].astype(str) + ', Seconds remaining:  ' + data['game_seconds_remaining'].astype(str) + ' Yards to go: '+ data['ydstogo'].astype(str)
+          #data['Decision'] = 'Quarter: ' + data['qtr'].astype(str) + ', Time Remining [seconds]:  ' + data['game_seconds_remaining'].astype(int).astype(str) + ', Yards to Go: '+ data['ydstogo'].astype(str)
+          data['Decision'] = 'Time Remining [sec]:  ' + data['game_seconds_remaining'].astype(int).astype(str) + ', Yards to Go: '+ data['ydstogo'].astype(str)
           decisions = list(data['Decision'].unique()) 
 
          # with col2:
 
           #  st.image('images/'+' '.join(against_team) +'.png') 
           #st.markdown("Show the Scoreboard")
-          decision = st.selectbox( "Choose 4th down play",(decisions))
+          decision = st.selectbox( "Choose 4th Down Scenario",(decisions))
          
     plot_df = data[data['Decision']==decision]
+    # decision_time = list((60.0-(plot_df['game_seconds_remaining']/60)).astype(int))
     decision_time = list((plot_df['game_seconds_remaining']/60).astype(int))
     decision_play = list(plot_df['play_id'])
     #plot_df = plot_df[scoreboard_columns]
@@ -110,12 +113,13 @@ def app():
         quarter_info =  '<p style="font-family:sans-serif; color:blue; font-size: 30px; alignment:center;">'+ ''.join(quarter)+' </p>'
         st.markdown(quarter_info, unsafe_allow_html=True)
       with score2:
-        st.markdown('Ball on')
+        st.markdown('Yardine')
+        # yard_line = np.where(plot_df['yardline_100']>50, 100-plot_df['yardline_100'], plot_df['yardline_100']).astype(int).astype(str)
         yard_line = plot_df['yardline_100'].astype(int).astype(str)
         yard_info =  '<p style="font-family:sans-serif; color:blue; font-size: 30px;alignment:center;">'+ ''.join(yard_line)+' </p>'
         st.markdown(yard_info, unsafe_allow_html=True)
       with score3:
-        st.markdown('Yds to Go')
+        st.markdown('Yards to Go')
         ydstogo = plot_df['ydstogo'].astype(str)
         quarter_info =  '<p style="font-family:sans-serif; color:blue; font-size: 30px;alignment:center;">'+ ''.join(ydstogo)+' </p>'
         st.markdown(quarter_info, unsafe_allow_html=True)
@@ -181,7 +185,7 @@ def app():
     
 
     with tab1:
-      st.write("Field Position of team "+team1[0])
+      st.write("     Field Position: "+team1[0])
       plt.figure()
 
       yl=100-yard_line.astype(int)
@@ -215,36 +219,49 @@ def app():
 
     with tab2:
 
+      # plt.figure(figsize=(6.4,4)) #width, height 6.4, 4.8
       plt.figure()
       sns.lineplot(data=graph_data, palette=colors, linewidth=1.5, errorbar=None)
       #sns.catplot(data=data,x='play_type', y='ydstogo',kind='box', palette='plasma')
       #ax.axvline(decision_time, color="darkred", linestyle="-", label="Valentine's Day")
-      plt.xticks(rotation=45)
+      plt.xticks(rotation=0)
       plt.xlim(60,0)
       plt.ylim(0,1)
-      plt.xlabel("Time Remaining (minutes)")
+      plt.xlabel("Time Remaining [minutes]")
       plt.ylabel("Win Probability")
-      plt.title(f"Win Probability Chart\n{game_teams[0]} vs {game_teams[1]}")
+      #plt.title(f"Win Probability Chart\n{game_teams[0]} vs {game_teams[1]}")
+      plt.title(f"Win Probability: {game_teams[0]} vs {game_teams[1]}")
       st.pyplot(plt)
       plt.figure()
 
     with tab3:
-      play_columns = ['play_id','posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta']
-      column_graph = plot_df[plot_df['play_id']==decision_play[0]]
-      column_graph = column_graph[play_columns]
-      column_graph['Punt']=column_graph['posteam_punt_wp_delta']
-      column_graph['Field Goal']=column_graph['posteam_fg_made_wp_delta']+column_graph['posteam_fg_missed_wp_delta']
-      column_graph['Run']=column_graph['posteam_run_failed_wp_delta'] + column_graph['posteam_run_convert_wp_delta']
-      column_graph['Pass']=column_graph['posteam_pass_failed_wp_delta'] + column_graph['posteam_pass_convert_wp_delta']
-      column_graph = column_graph.drop(columns=['posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta'])
-      graph_df = column_graph.melt(id_vars='play_id', var_name='Play',value_vars=['Punt','Field Goal','Run','Pass'], value_name='Probability')
+        
+      play_columns               = ['play_id','posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta']
+      
+      column_graph               = plot_df[plot_df['play_id']==decision_play[0]]
+      
+      column_graph               = column_graph[play_columns]
+      
+      column_graph['Punt']       = column_graph['posteam_punt_wp_delta']
+      column_graph['Field Goal'] = column_graph['posteam_fg_made_wp_delta']+column_graph['posteam_fg_missed_wp_delta']
+      column_graph['Run']        = column_graph['posteam_run_failed_wp_delta'] + column_graph['posteam_run_convert_wp_delta']
+      column_graph['Pass']       = column_graph['posteam_pass_failed_wp_delta'] + column_graph['posteam_pass_convert_wp_delta']
+      column_graph               = column_graph.drop(columns=['posteam_fg_made_wp_delta', 'posteam_fg_missed_wp_delta', 'posteam_punt_wp_delta','posteam_pass_failed_wp_delta', 'posteam_run_failed_wp_delta', 'posteam_pass_convert_wp_delta', 'posteam_run_convert_wp_delta'])
+      graph_df                   = column_graph.melt(id_vars='play_id', var_name='Play',value_vars=['Punt','Field Goal','Run','Pass'], value_name='Probability')
 
-      c = ['gray' if (x < max(graph_df.Probability)) else 'orange' for x in graph_df.Probability]
+      # c = [colors[0] if (x < max(graph_df.Probability)) else '#66ff66' for x in graph_df.Probability]
+      
+      c = ['#bababa' if (x < max(graph_df.Probability)) else '#66ff66' for x in graph_df.Probability]
+      
+      #bababa
+      
+      # plt.figure(figsize=(6.4,4)) #width, height 6.4, 4.8
       plt.figure()
-      ax=sns.barplot(data=graph_df, x=graph_df.Play, y=graph_df.Probability ,palette=c)
-      plt.xlabel("Play type")
-      plt.ylabel("Probability")
-      plt.title(f"Change in Win Probability by play type for team \n{game_teams[0]}")
+      ax=sns.barplot(data=graph_df, x=graph_df.Play, y=graph_df.Probability, palette=c)
+      plt.xlabel("Play Type")
+      plt.ylabel("Change in Win Probability")
+      plt.title(f"Change in Win Probability by Play Type: {game_teams[0]}")
+      #plt.title(f"Change in Win Probability by Play Type for team \n{game_teams[0]}")
       st.pyplot(plt)
       plt.figure()
     
