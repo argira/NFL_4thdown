@@ -119,7 +119,7 @@ def app():
         yard_info =  '<p style="font-family:sans-serif; color:blue; font-size: 30px;alignment:center;">'+ ''.join(yard_line)+' </p>'
         st.markdown(yard_info, unsafe_allow_html=True)
       with score3:
-        st.markdown('Yards to Go')
+        st.markdown('Yds to Go')
         ydstogo = plot_df['ydstogo'].astype(str)
         quarter_info =  '<p style="font-family:sans-serif; color:blue; font-size: 30px;alignment:center;">'+ ''.join(ydstogo)+' </p>'
         st.markdown(quarter_info, unsafe_allow_html=True)
